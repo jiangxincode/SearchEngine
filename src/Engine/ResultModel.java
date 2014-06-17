@@ -19,8 +19,8 @@ public class ResultModel {
 		this.word = word;
 		if (result.indexOf("#split#") > 0) {
 			String[] array = result.split("#split#");
-			this.url = "http://"
-					+ array[0].replaceAll("_", "/").replaceAll(".txt", "");
+			//this.url = "http://" + array[0].replaceAll("_", "/").replaceAll(".txt", "");
+			this.url = "http://" + array[0].replaceFirst("_", "/").replaceAll(".txt", "");
 			this.title = array[1];
 			this.partContent = array[2];
 			this.wordV = Integer.parseInt(array[3].trim());

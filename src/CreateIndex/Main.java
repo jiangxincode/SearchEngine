@@ -5,6 +5,7 @@
 package CreateIndex;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,30 +15,36 @@ import java.util.HashMap;
 public class Main {
 	public Main() {
 		HashMap<String, String> hashResult = new HashMap<String, String>();
-		String fileName = "";
-		for (int fileIndex = 33234; fileIndex < 33244; fileIndex++) {
-			fileName = "news.nju.edu.cn_show_article_1_" + fileIndex + ".txt";
+		//String fileName = "";
+		File dirFile = new File("wordDoc");
+		File[] fileList = dirFile.listFiles();
+		for(int i=0;i<fileList.length;i++) {
+			String fileName = fileList[i].getName();
+			System.out.println(fileName);
+		//}
+		//for (int fileIndex = 33234; fileIndex < 33244; fileIndex++) {
+			//fileName = "news.nju.edu.cn_show_article_1_" + fileIndex + ".txt";
 
 			HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
 			String content = ReadAndWrite.readFileByChars(
 					"wordDoc/" + fileName, "gbk");
 			String[] wordArray = content.split(" ");
-			for (int i = 0; i < wordArray.length; i++) {
+			for (int j = 0; j < wordArray.length; j++) {
 
-				if (hashMap.keySet().contains(wordArray[i])) {
-					Integer integer = (Integer) hashMap.get(wordArray[i]);
+				if (hashMap.keySet().contains(wordArray[j])) {
+					Integer integer = (Integer) hashMap.get(wordArray[j]);
 					int value = integer.intValue() + 1;
-					hashMap.put(wordArray[i], new Integer(value));
+					hashMap.put(wordArray[j], new Integer(value));
 				} else
-					hashMap.put(wordArray[i], new Integer(1));
+					hashMap.put(wordArray[j], new Integer(1));
 			}
 			for (String str : hashMap.keySet()) {
 
 				// 获得标题
-				String strNum = fileName.replaceAll("news.nju.edu.cn_show_article_1_", "");
-				strNum = strNum.replaceAll(".txt", "");
+				//String strNum = fileName.replaceAll("news.nju.edu.cn_show_article_1_", "");
+				//strNum = strNum.replaceAll(".txt", "");
 				String title = ReadAndWrite.readFileByChars("titleDoc/"
-						+ strNum + ".txt", "gbk");
+						+ fileName, "gbk");
 
 				// 获得跟词相关的部分内容
 				String fullContent = ReadAndWrite.readFileByChars("srcDoc/"
@@ -77,8 +84,7 @@ public class Main {
 			String value = "";
 
 			for (String str : hashResult.keySet()) {
-				String tmp = str + "  " + hashResult.get(str);// liang ge kong
-																// ge
+				String tmp = str + "  " + hashResult.get(str); //两个空格
 				//System.out.println(tmp);
 				value += (tmp + "#LINE#");
 
