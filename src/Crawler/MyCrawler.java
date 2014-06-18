@@ -3,7 +3,7 @@ package Crawler;
 import java.util.Set;
 
 public class MyCrawler {
-	final int MAXNUM = 10; // the max amount of the web pages that crawled.
+	final int MAXNUM = 100; // the max amount of the web pages that crawled.
 	int downloadFileNum = 0;
 	final int MAXSEEDSNUM = 10; //the max amount of the seeds.
 	String[] seeds = new String[MAXSEEDSNUM];
@@ -34,9 +34,7 @@ public class MyCrawler {
 		while(!LinkQueue.unVisitedUrlsEmpty() && downloadFileNum<MAXNUM)
 		{
 			//队头URL出队列
-			System.out.println(LinkQueue.getVisitedUrlNum()); //bad
-			String visitUrl=(String)LinkQueue.unVisitedUrlDeQueue(); //bad
-			System.out.println("Now dequene:" + visitUrl); //bad
+			String visitUrl=(String)LinkQueue.unVisitedUrlDeQueue();
 			if(visitUrl.contains("show_article")) {
 				DownLoadFile downLoader=new DownLoadFile(); //下载网页
 				downLoader.downloadFile(visitUrl);

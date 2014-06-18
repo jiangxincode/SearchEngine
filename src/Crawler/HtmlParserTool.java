@@ -44,24 +44,19 @@ public class HtmlParserTool {
 				if (tag instanceof LinkTag)// <a> 标签
 				{
 					LinkTag link = (LinkTag) tag;
-					String linkUrl = link.getLink(); //url
-					//System.out.println("The linkURL is:---------------" + linkUrl); //bad
+					String linkUrl = link.getLink(); //url可能出现在src,href等属性中
 					if (filter.accept(linkUrl))
 						links.add(linkUrl);
 				} else// <frame> 标签
 				{
 					// 提取 frame 里 src 属性的链接如 <frame src="test.html"/>
 					String frame = tag.getText();
-					//System.out.println("Here" + frame);
 					int start = frame.indexOf("src=\"");
 					frame = frame.substring(start);
-					
-					System.out.println(frame);
 					int end = frame.indexOf("\">");
 					if(end == -1) {
 						end = frame.indexOf("?");
 					}
-					System.out.println(end);
 					String frameUrl = frame.substring(5, end - 1);
 					if (filter.accept(frameUrl))
 						links.add(frameUrl);

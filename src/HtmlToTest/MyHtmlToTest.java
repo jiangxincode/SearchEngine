@@ -11,14 +11,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class MainPro {
-	public MainPro() throws IOException {
+public class MyHtmlToTest {
+	public MyHtmlToTest() throws IOException {
 		File directory = new File("html");
 		File[] fileList = directory.listFiles();
 
 		for (int i = 0; i < fileList.length; i++) {
-			System.out.println(fileList[i].toString());
-			String fileName = fileList[i].toString().substring(4);
+			System.out.println(fileList[i].getName());
+			String fileName = fileList[i].getName();
 			StringBuilder content = new StringBuilder();
 			String str = new String();
 			BufferedReader in = new BufferedReader(new InputStreamReader(
@@ -72,7 +72,7 @@ public class MainPro {
 	}
 
 	public static void main(String[] args) throws IOException {
-		new MainPro();
+		new MyHtmlToTest();
 
 	}
 }

@@ -21,7 +21,6 @@ import org.wltea.analyzer.Lexeme;
 
 public class IndexPro {
 	String indexFile; // the index file
-	String wordtableFile; // the dictionary file
 	Vector<String> vecKey = new Vector<String>();
 	HashMap<String, String> hashWord = null;
 	long time = 0;
@@ -29,9 +28,8 @@ public class IndexPro {
 	public IndexPro() {
 	}
 
-	public IndexPro(String indexFile, String wordtableFile) {
+	public IndexPro(String indexFile) {
 		this.indexFile = indexFile;// 索引文件
-		this.wordtableFile = wordtableFile;// 词表
 		long begin = System.currentTimeMillis();
 		hashWord = new HashMap<String, String>();
 		try {
@@ -41,8 +39,6 @@ public class IndexPro {
 			while ((line = rin.readLine()) != null) {
 				String[] array = line.split("  ");
 				hashWord.put(array[0], array[1]); // array[0]keyword,array[1]others
-				// System.out.println(array[0]); //bad
-				// System.out.println(array[1]); //bad
 			}
 			rin.close();
 		} catch (FileNotFoundException e) {
@@ -61,8 +57,6 @@ public class IndexPro {
 			long begin = System.currentTimeMillis();
 			ResultModel[] modArray = null;
 			// 对关键字分词
-			// SplitWordPro swp = new SplitWordPro(this.wordtableFile); //bad
-			// this.vecKey = swp.getWord(key); //bad
 			StringReader strReader = new StringReader(key);
 			IKSegmentation iksegmentation = new IKSegmentation(strReader);
 			Lexeme lexeme = null;
@@ -79,7 +73,6 @@ public class IndexPro {
 			for (String strKey : vecKey) {
 				String result = this.hashWord.get(strKey);
 				if (result != null) {
-					// modList = new ArrayList<ResultModel>(); //bad
 					String[] array = result.split("#next#"); // 得到存在该关键字的所有文本文件信息
 					modArray = new ResultModel[array.length]; // 每个文本文件信息都可以获得一个ResultModel
 					for (int i = 0; i < array.length; i++)
@@ -95,19 +88,7 @@ public class IndexPro {
 					// 合并相同出处内容的词频
 					this.ResultMerger(modList);
 					// 将结果按照词频排序
-					Collections.sort(modList, new SortByNum());
-					// for (int i = 0; i < modList.size(); i++) { //bad
-					// for (int j = i + 1; j < modList.size(); j++) {
-					// if (modList.get(i).getWordV() <
-					// modList.get(j).getWordV()) {
-					// ResultModel modTmp = modList.get(i);
-					// modArray[i] = modArray[j];
-					// modArray[j] = modTmp;
-					// }
-					// }
-					// }
-					// modList = new ArrayList<ResultModel>(); //bad
-
+					Collections.sort(modList, new sortByWordNum());
 				}
 			}
 			long end = System.currentTimeMillis();
@@ -149,7 +130,7 @@ public class IndexPro {
 				"");
 	}
 	public static void main(String[] argv) {
-		IndexPro index = new IndexPro("WebRoot/index.txt", "WebRoot/wordtable");
-		ArrayList<ResultModel>list = index.getResultSet("中国");
+		//IndexPro index = new IndexPro("WebRoot/index.txt", "WebRoot/wordtable");
+		//ArrayList<ResultModel>testList = index.getResultSet("中国");
 	}
 }

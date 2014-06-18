@@ -12,19 +12,14 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.HashMap;
 
-public class Main {
-	public Main() {
+public class MyCreateIndex {
+	public MyCreateIndex() {
 		HashMap<String, String> hashResult = new HashMap<String, String>();
-		//String fileName = "";
 		File dirFile = new File("wordDoc");
 		File[] fileList = dirFile.listFiles();
 		for(int i=0;i<fileList.length;i++) {
 			String fileName = fileList[i].getName();
-			System.out.println(fileName);
-		//} //bad
-		//for (int fileIndex = 33234; fileIndex < 33244; fileIndex++) { //bad
-			//fileName = "news.nju.edu.cn_show_article_1_" + fileIndex + ".txt"; //bad
-
+			System.out.println("现在正在对文件" + fileName + "进行分析");
 			HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
 			String content = ReadAndWrite.readFileByChars("wordDoc/" + fileName, "gbk");
 			String[] wordArray = content.split(" ");
@@ -39,8 +34,6 @@ public class Main {
 			for (String str : hashMap.keySet()) {
 
 				// 获得标题
-				//String strNum = fileName.replaceAll("news.nju.edu.cn_show_article_1_", "");
-				//strNum = strNum.replaceAll(".txt", "");
 				String title = ReadAndWrite.readFileByChars("titleDoc/"
 						+ fileName, "gbk");
 
@@ -68,7 +61,6 @@ public class Main {
 				// 形成倒排索引
 				String tmp = fileName + "#split#" + title + "#split#"
 						+ partContent + "#split#" + hashMap.get(str);
-				// System.out.println(str+"    "+tmp); //bad
 				if (hashResult.keySet().contains(str)) {// 包含该词
 					String value = (String) hashResult.get(str);
 					value += ("#next#" + tmp);
@@ -80,15 +72,15 @@ public class Main {
 
 		if (hashResult.size() > 0) {
 			String value = "";
-
+			System.out.println("现在正在建立索引内容，可能会需要较长时间，请耐心等待……");
 			for (String str : hashResult.keySet()) {
 				String tmp = str + "  " + hashResult.get(str); //两个空格
-				//System.out.println(tmp);
 				value += (tmp + "#LINE#");
 
 			}
-
+			System.out.println("现在正在将索引内容写入磁盘，可能会需要较长时间，请耐心等待……");
 			this.writeFileByChars("WebRoot/index.txt", value);
+			System.out.println("已经完成建立索引工作");
 		}
 
 	}
@@ -101,8 +93,6 @@ public class Main {
 
 			String[] arryStr = value.split("#LINE#");
 			for (int i = 0; i < arryStr.length; i++) {
-				//System.out.println(arryStr[i]);
-				// ByteBuffer bb = ByteBuffer.wrap(val.getBytes());
 				bw.write(arryStr[i]);
 				bw.write(13);
 				bw.write(10);
@@ -118,7 +108,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		new Main();
+		new MyCreateIndex();
 
 	}
 

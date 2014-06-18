@@ -8,11 +8,11 @@ import java.io.IOException;
 import org.wltea.analyzer.IKSegmentation;
 import org.wltea.analyzer.Lexeme;
 
-public class IK_Tokenize {
+public class MySpilt {
 	private String sourceDir;
 	private String targetDir;
 
-	public IK_Tokenize(String source, String target) {
+	public MySpilt(String source, String target) {
 		this.sourceDir = source;
 		this.targetDir = target;
 	}
@@ -77,9 +77,10 @@ public class IK_Tokenize {
 		} catch (IOException e3) {
 			e3.printStackTrace();
 		}
+		System.out.println("成功对" + srcfilename + "进行分词");
 	}
 	public static void main(String[] argv) {
-		IK_Tokenize myIK_Tokenize = new IK_Tokenize("srcDoc/", "wordDoc/");
+		MySpilt myIK_Tokenize = new MySpilt("srcDoc/", "wordDoc/");
 		myIK_Tokenize.segment();
 	}
 }

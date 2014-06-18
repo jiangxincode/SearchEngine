@@ -14,6 +14,7 @@ public class LinkQueue {
     //添加到访问过的URL队列中
 	public static void addVisitedUrl(String url) {
 		visitedUrl.add(url);
+		System.out.println("现在visitedUrl集合中共有：" + LinkQueue.getVisitedUrlNum() + "个元素"); //not very bad
 	}
 
     //移除访问过的URL
@@ -33,14 +34,17 @@ public class LinkQueue {
 
     //未访问的URL出队列
 	public static Object unVisitedUrlDeQueue() {
-		return unVisitedUrl.poll();
+		String visitUrl = unVisitedUrl.poll();
+		System.out.println(visitUrl + "离开unVisitedUrl队列"); //bad
+		return visitUrl;
 	}
 
 	// 保证每个 url 只被访问一次
 	public static void addUnvisitedUrl(String url) {
 		if (url != null && !url.trim().equals("") && !visitedUrl.contains(url) && !unVisitedUrl.contains(url)) {
 				unVisitedUrl.add(url);
-			System.out.println("Now add: " + url + LinkQueue.getUnVisitedUrlNum()); //bad
+			System.out.println(url + "进入unVisitedUrl队列"); //not very bad
+			System.out.println("现在unVisitedUrl队列中共有:" + LinkQueue.getUnVisitedUrlNum() + "个元素"); //not very bad
 		}
 			
 	}

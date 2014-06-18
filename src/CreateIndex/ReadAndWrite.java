@@ -21,7 +21,6 @@ public class ReadAndWrite {
 			InputStreamReader r = new InputStreamReader(in, encoding);
 			BufferedReader rin = new BufferedReader(r);
 			while ((s = rin.readLine()) != null) {
-				// System.out.println(s.getBytes("utf-8"));
 				result.append(s);
 			}
 			rin.close();

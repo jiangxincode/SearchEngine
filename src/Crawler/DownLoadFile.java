@@ -62,8 +62,6 @@ public class DownLoadFile {
 
 			//处理 HTTP 响应内容 
 			InputStream responseBody = getMethod.getResponseBodyAsStream(); // 读取为字节数组
-			//String type=getMethod.getResponseHeader("Content-Type").getValue(); // 根据网页 url 生成保存时的文件名
-			//if(type.contains("html") && url.endsWith(".html")) {
 				filePath = "html/" + getFileNameByUrl(url);
 				saveToLocal(responseBody, filePath);
 			//}
@@ -75,7 +73,7 @@ public class DownLoadFile {
 		} finally {
 			getMethod.releaseConnection(); // 释放连接
 		}
-		System.out.println(filePath);
+		System.out.println("成功下载文件" + filePath + "到本地"); //not very bad
 		return filePath;
 	}
 }
