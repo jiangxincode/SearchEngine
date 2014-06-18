@@ -46,6 +46,8 @@ wordDoc/
 html/
 temp/
 WebRoot/WEB-INF/classes/
+WebRoot/WEB-INF/lib/
+WebRoot/WEB-INF/lib/
 WebRoot/META-INF/
 WebRoot/Images/
 lib/

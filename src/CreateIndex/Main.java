@@ -21,16 +21,14 @@ public class Main {
 		for(int i=0;i<fileList.length;i++) {
 			String fileName = fileList[i].getName();
 			System.out.println(fileName);
-		//}
-		//for (int fileIndex = 33234; fileIndex < 33244; fileIndex++) {
-			//fileName = "news.nju.edu.cn_show_article_1_" + fileIndex + ".txt";
+		//} //bad
+		//for (int fileIndex = 33234; fileIndex < 33244; fileIndex++) { //bad
+			//fileName = "news.nju.edu.cn_show_article_1_" + fileIndex + ".txt"; //bad
 
 			HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
-			String content = ReadAndWrite.readFileByChars(
-					"wordDoc/" + fileName, "gbk");
+			String content = ReadAndWrite.readFileByChars("wordDoc/" + fileName, "gbk");
 			String[] wordArray = content.split(" ");
 			for (int j = 0; j < wordArray.length; j++) {
-
 				if (hashMap.keySet().contains(wordArray[j])) {
 					Integer integer = (Integer) hashMap.get(wordArray[j]);
 					int value = integer.intValue() + 1;
@@ -70,7 +68,7 @@ public class Main {
 				// 形成倒排索引
 				String tmp = fileName + "#split#" + title + "#split#"
 						+ partContent + "#split#" + hashMap.get(str);
-				// System.out.println(str+"    "+tmp);
+				// System.out.println(str+"    "+tmp); //bad
 				if (hashResult.keySet().contains(str)) {// 包含该词
 					String value = (String) hashResult.get(str);
 					value += ("#next#" + tmp);
