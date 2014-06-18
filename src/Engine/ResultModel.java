@@ -4,7 +4,7 @@
  * */
 package Engine;
 
-/* String tmp = str + " " + fileName +"#split#" + title + "#split#" + hashMap.get(str) + "#next#";*/
+/* String tmp = str + " " + fileName +"#split#" + title + "#split#" + hashMap.get(str) + "#split#" + num + "#next#";*/
 public class ResultModel {
 	private String word;// ´Ê
 	private String url;// Ô´Ò³ÃæurlµØÖ·
@@ -19,7 +19,6 @@ public class ResultModel {
 		this.word = word;
 		if (result.indexOf("#split#") > 0) {
 			String[] array = result.split("#split#");
-			//this.url = "http://" + array[0].replaceAll("_", "/").replaceAll(".txt", "");
 			this.url = "http://" + array[0].replaceFirst("_", "/").replaceAll(".txt", "");
 			this.title = array[1];
 			this.partContent = array[2];

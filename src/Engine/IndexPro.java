@@ -10,11 +10,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
 
-import SplitWord.SplitWordPro;
+import org.wltea.analyzer.IKSegmentation;
+import org.wltea.analyzer.Lexeme;
 
 public class IndexPro {
 	String indexFile; // the index file
@@ -32,15 +34,13 @@ public class IndexPro {
 		long begin = System.currentTimeMillis();
 		hashWord = new HashMap<String, String>();
 		try {
-
 			String line = null;
 			BufferedReader rin = new BufferedReader(new InputStreamReader(new FileInputStream(new File(indexFile)),"UTF-8"));
 			while ((line = rin.readLine()) != null) {
-				// System.out.println(line);//读取每一行
 				String[] array = line.split("  ");
-				hashWord.put(array[0], array[1]);
-				//System.out.println(array[0]);
-				//System.out.println(array[1]);
+				hashWord.put(array[0], array[1]); //array[0]keyword,array[1]others
+				//System.out.println(array[0]); //bad
+				//System.out.println(array[1]); //bad
 			}
 			rin.close();
 		} catch (FileNotFoundException e) {
@@ -57,11 +57,21 @@ public class IndexPro {
 		ArrayList<ResultModel> modList = null;
 		if (this.hashWord.size() > 0) {
 			long begin = System.currentTimeMillis();
-
 			ResultModel[] modArray = null;
 			// 对关键字分词
-			SplitWordPro swp = new SplitWordPro(this.wordtableFile);
-			this.vecKey = swp.getWord(key);
+			//SplitWordPro swp = new SplitWordPro(this.wordtableFile); //bad
+			//this.vecKey = swp.getWord(key); //bad
+			StringReader strReader = new StringReader(key);
+			IKSegmentation iksegmentation = new IKSegmentation(strReader);
+			Lexeme lexeme = null;
+			try {
+				while((lexeme=iksegmentation.next())!=null) {
+					vecKey.add(lexeme.getLexemeText());
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			// 分别查找各个词在索引中的匹配
 			for (String strKey : vecKey) {
 				String result = this.hashWord.get(strKey);

@@ -16,8 +16,10 @@
 			isResult = true;
 			ServletContext app = (ServletContext) pageContext.getServletContext();
 			String strPath = app.getRealPath("/");
+			
 			indexPro = new Engine.IndexPro(strPath+"index.txt",strPath+"wordtable.txt");
 			list = indexPro.getResultSet(keyword);
+			
 			if(list==null)isResult = false;
 		}
 	}
