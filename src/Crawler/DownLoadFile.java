@@ -1,3 +1,7 @@
+/**
+ * 描述：根据URL下载网页到本地
+ * 作者：蒋鑫
+**/
 package Crawler;
 
 import java.io.BufferedInputStream;

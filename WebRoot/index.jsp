@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-	Engine.IndexPro indexPro = null;
+	Engine.MyEngine myEngine = null;
 	ArrayList<Engine.ResultModel> list=null;
 	boolean isResult = false;
 	String keyword = request.getParameter("keyWord");
@@ -17,8 +17,8 @@
 			ServletContext app = (ServletContext) pageContext.getServletContext();
 			String strPath = app.getRealPath("/");
 			
-			indexPro = new Engine.IndexPro(strPath+"index.txt");
-			list = indexPro.getResultSet(keyword);
+			myEngine = new Engine.MyEngine(strPath+"index.txt");
+			list = myEngine.getResultSet(keyword);
 			
 			if(list==null)isResult = false;
 		}
@@ -56,7 +56,7 @@
 		<%
 		 if(isResult)
 		 {%>
-			<a href="#">三金搜索</a> 找到相关内容<%=list.size() %>篇，用时<%=indexPro.getTime() %>毫秒
+			<a href="#">三金搜索</a> 找到相关内容<%=list.size() %>篇，用时<%=myEngine.getTime() %>毫秒
 		 <%
 		 }
 		 %>
@@ -71,11 +71,11 @@
 			%>
 					<div class="bobyTitle">
 						<a href="<%=mod.getUrl() %>" target="_blank">
-							<%= indexPro.HighLightKey(mod.getTitle()) %>
+							<%= myEngine.HighLightKey(mod.getTitle()) %>
                         </a>
                 	</div>
 					<div class="bobyContent">
-						<%= indexPro.HighLightKey(mod.getPartContent()) %>
+						<%= myEngine.HighLightKey(mod.getPartContent()) %>
 					</div>
 					<div class="bobyUrl">
 						<span style="color: Gray;"><%=mod.getUrl() %></span>&nbsp;&nbsp;

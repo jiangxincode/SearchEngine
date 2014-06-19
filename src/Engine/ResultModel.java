@@ -1,17 +1,17 @@
-/*
+/**
  * 描述：结果模型，用来存放单个的检索结果
  * 作者：蒋鑫
- * */
+**/
 package Engine;
 
-/* String tmp = str + " " + fileName +"#split#" + title + "#split#" + hashMap.get(str) + "#split#" + num + "#next#";*/
+// String tmp = str + " " + fileName +"#split#" + title + "#split#" + hashMap.get(str) + "#split#" + num + "#next#"
 public class ResultModel {
-	private String word;// 词
-	private String url;// 源页面url地址
-	private int wordV;// 在本文档内的词频
-	private String title;// 本文档的标题
-	private String partContent;// 包含词的部分文章内容
-
+	private String word; //词
+	private String url; //源页面url地址
+	private int wordV; //在本文档内的词频
+	private String title; //本文档的标题
+	private String partContent; //包含词的部分文章内容
+	
 	public ResultModel() {
 	}
 

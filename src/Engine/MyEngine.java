@@ -1,7 +1,7 @@
-/*
+/**
  * 描述：搜索引擎，读取索引文件按照索引上词频来排序显示结果
  * 作者：蒋鑫
- * */
+**/
 package Engine;
 
 import java.io.BufferedReader;
@@ -19,16 +19,16 @@ import java.util.Vector;
 import org.wltea.analyzer.IKSegmentation;
 import org.wltea.analyzer.Lexeme;
 
-public class IndexPro {
+public class MyEngine {
 	String indexFile; // the index file
 	Vector<String> vecKey = new Vector<String>();
 	HashMap<String, String> hashWord = null;
 	long time = 0;
 
-	public IndexPro() {
+	public MyEngine() {
 	}
 
-	public IndexPro(String indexFile) {
+	public MyEngine(String indexFile) {
 		this.indexFile = indexFile;// 索引文件
 		long begin = System.currentTimeMillis();
 		hashWord = new HashMap<String, String>();
@@ -130,7 +130,7 @@ public class IndexPro {
 				"");
 	}
 	public static void main(String[] argv) {
-		//IndexPro index = new IndexPro("WebRoot/index.txt", "WebRoot/wordtable");
+		//MyEngine index = new MyEngine("WebRoot/index.txt");
 		//ArrayList<ResultModel>testList = index.getResultSet("中国");
 	}
 }

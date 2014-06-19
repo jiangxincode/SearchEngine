@@ -1,3 +1,7 @@
+/**
+ * 描述：定义文件读写方法类，供主程序使用
+ * 作者：蒋鑫
+**/
 package HtmlToTest;
 
 import java.io.BufferedReader;

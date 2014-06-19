@@ -1,3 +1,7 @@
+/**
+ * 描述：主要数据结构的类定义
+ * 作者：蒋鑫
+**/
 package Crawler;
 
 import java.util.HashSet;

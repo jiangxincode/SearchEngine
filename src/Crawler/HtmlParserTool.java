@@ -1,3 +1,7 @@
+/**
+ * 描述：分析网页内容，提取其中的链接
+ * 作者：蒋鑫
+**/
 package Crawler;
 
 import java.util.HashSet;
