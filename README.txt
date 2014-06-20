@@ -37,6 +37,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 		去除了目前所有已经发现的冗余代码；更改了所有不合适的文件名，更加能体现其作用；对所有文件添加了文件功能注释，并于对文件功能整体把握；对于提示信息的输出更加合理，有利于进一步的分析研究。已经基本达到课程验收标准。
 	Version 0.08
 		去除了所有无用的第三方jar包，目前仅保留httpclient、htmlparser、IKAnalyzer三种个包。IKAnalyzer包的版本由IKAnalyzer3.2.8更新到IKAnalyzer2012_u6，切词效果更加优秀。
+	Version 0.09
+		HttpClient包由Httpclient-3.0.1更新到最新的httpcomponents-client-4.3.3，更新原因是旧包已经停止更新，且存在一些不良特性。由于版本跨越幅度较大，接口变化较大，所以本程序中的Crawler.DownLoadFile.java文件变化较大。
 
 待实现和完善部分：
 	1、设置搜索框初始半透明提示文本。
