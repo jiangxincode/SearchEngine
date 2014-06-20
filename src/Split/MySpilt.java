@@ -9,8 +9,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import org.wltea.analyzer.IKSegmentation;
-import org.wltea.analyzer.Lexeme;
+
+import org.wltea.analyzer.core.*;
 
 public class MySpilt {
 	private String sourceDir;
@@ -66,7 +66,7 @@ public class MySpilt {
 			e1.printStackTrace();
 		}
 
-		IKSegmentation iksegmentation = new IKSegmentation(filereader);
+		IKSegmenter iksegmentation = new IKSegmenter(filereader,true);
 		try {
 			while ((lexeme = iksegmentation.next()) != null) {
 				filewriter.write(lexeme.getLexemeText());

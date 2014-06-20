@@ -16,8 +16,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Vector;
 
-import org.wltea.analyzer.IKSegmentation;
-import org.wltea.analyzer.Lexeme;
+import org.wltea.analyzer.core.IKSegmenter;
+import org.wltea.analyzer.core.*;
 
 public class MyEngine {
 	String indexFile; // the index file
@@ -58,7 +58,7 @@ public class MyEngine {
 			ResultModel[] modArray = null;
 			// ¶Ô¹Ø¼ü×Ö·Ö´Ê
 			StringReader strReader = new StringReader(key);
-			IKSegmentation iksegmentation = new IKSegmentation(strReader);
+			IKSegmenter iksegmentation = new IKSegmenter(strReader,true);
 			Lexeme lexeme = null;
 			try {
 				while ((lexeme = iksegmentation.next()) != null) {
