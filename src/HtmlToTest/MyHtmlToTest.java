@@ -16,6 +16,7 @@ public class MyHtmlToTest {
 		File[] fileList = directory.listFiles();
 
 		for (int i = 0; i < fileList.length; i++) {
+			System.out.println(fileList[i].getName());
 			String fileName = fileList[i].getName();
 			StringBuilder content = new StringBuilder();
 			String str = new String();
@@ -41,7 +42,6 @@ public class MyHtmlToTest {
 			titleResult = this.DealHtml(titleResult);
 			ReadAndWrite.writeFileByChars("titleDoc/" + fileName + ".txt",
 					titleResult);
-			System.out.println("已经成功对" + fileName + "进行解析");
 		}
 	}
 
