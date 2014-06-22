@@ -41,6 +41,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 		HttpClient包由Httpclient-3.0.1更新到最新的httpcomponents-client-4.3.3，更新原因是旧包已经停止更新，且存在一些不良特性。由于版本跨越幅度较大，接口变化较大，所以本程序中的Crawler.DownLoadFile.java文件变化较大。
 	Version 0.10
 		实现了CreateIndex的大幅优化，相关部分效率提高近200倍。
+	Version 0.11
+		实现了Crawler的多线程并行，效率提升约30%。但由于采用了线程，同步问题尚未完全解决，所以如果要求爬取100个网页，则实际爬取的网页可能并不是正好100个。会在之后版本进行修正。
 
 待实现和完善部分：
 	1、设置搜索框初始半透明提示文本。
@@ -52,5 +54,4 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 	8、实现搜索结果分页。
 	9、优化结果页面，比如网址链接蓝色显示，去除“……”。
 	10、实现PageRank排序算法。
-	11、实现多线程爬虫，优化爬取速度。
 	12、修复每次仅返回100个结果的bug。
