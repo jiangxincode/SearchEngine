@@ -13,13 +13,18 @@ import java.io.OutputStreamWriter;
 import java.util.HashMap;
 
 public class MyCreateIndex {
+	long start, end;
+
 	public MyCreateIndex() {
 		HashMap<String, String> hashResult = new HashMap<String, String>();
 		File dirFile = new File("wordDoc");
 		File[] fileList = dirFile.listFiles();
+		
+		System.out.println("正在对文本内容进行分析，可能会需要较长时间，请耐心等待……");
+		start = System.currentTimeMillis();
 		for (int i = 0; i < fileList.length; i++) {
 			String fileName = fileList[i].getName();
-			System.out.println("现在正在对文件" + fileName + "进行分析");
+			System.out.println("\t现在正在对文件" + fileName + "进行分析");
 			HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
 			String content = ReadAndWrite.readFileByChars(
 					"wordDoc/" + fileName, "gbk");
@@ -41,10 +46,9 @@ public class MyCreateIndex {
 				// 获得跟词相关的部分内容
 				String fullContent = ReadAndWrite.readFileByChars("srcDoc/"
 						+ fileName, "gbk");
-				String partContent = "";
+				StringBuilder partContent = new StringBuilder("");
 				int wordStart = fullContent.indexOf(str);// 包含词的位置
 				while (wordStart > 0) {
-					String strTmp;
 					int s = 0, e = fullContent.length();
 					if (wordStart > 10)
 						s = wordStart - 10;
@@ -52,10 +56,8 @@ public class MyCreateIndex {
 						s = 0;
 					if (e > (wordStart + 10))
 						e = wordStart + 10;
-
-					strTmp = fullContent.substring(s, e);
-
-					partContent += (strTmp + "......");
+					partContent.append(fullContent.substring(s, e)).append("......");
+					//partContent += (strTmp + "......");
 					fullContent = fullContent.substring(e);
 					wordStart = fullContent.indexOf(str);
 				}
@@ -69,23 +71,27 @@ public class MyCreateIndex {
 				} else
 					hashResult.put(str, tmp);
 			}
+
 		}
+		end = System.currentTimeMillis();
+		System.out.println("文件内容分析完毕，共用时：" + (end - start) + "ms");
 
 		if (hashResult.size() > 0) {
-			long start,end;
 			StringBuilder value = new StringBuilder("");
+			
 			System.out.println("现在正在建立索引内容，可能会需要较长时间，请耐心等待……");
 			start = System.currentTimeMillis();
 			for (String str : hashResult.keySet()) {
-				StringBuilder tmp = new StringBuilder(str).append("  ").append(hashResult.get(str));
-				//String tmp = str + "  " + hashResult.get(str); // 两个空格
+				StringBuilder tmp = new StringBuilder(str).append("  ").append(
+						hashResult.get(str));
+				// String tmp = str + "  " + hashResult.get(str); // 两个空格
 				value.append(tmp).append("#LINE#");
-				//value += (tmp + "#LINE#");
+				// value += (tmp + "#LINE#");
 
 			}
 			end = System.currentTimeMillis();
 			System.out.println("索引内容建立完毕，共用时：" + (end - start) + "ms");
-			
+
 			System.out.println("现在正在将索引内容写入磁盘，可能会需要较长时间，请耐心等待……");
 			start = System.currentTimeMillis();
 			this.writeFileByChars("WebRoot/index.txt", value.toString());
