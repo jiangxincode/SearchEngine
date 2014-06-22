@@ -17,12 +17,11 @@ public class MyCreateIndex {
 		HashMap<String, String> hashResult = new HashMap<String, String>();
 		File dirFile = new File("wordDoc");
 		File[] fileList = dirFile.listFiles();
-		for (int i = 0; i < fileList.length; i++) {
+		for(int i=0;i<fileList.length;i++) {
 			String fileName = fileList[i].getName();
 			System.out.println("现在正在对文件" + fileName + "进行分析");
 			HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
-			String content = ReadAndWrite.readFileByChars(
-					"wordDoc/" + fileName, "gbk");
+			String content = ReadAndWrite.readFileByChars("wordDoc/" + fileName, "gbk");
 			String[] wordArray = content.split(" ");
 			for (int j = 0; j < wordArray.length; j++) {
 				if (hashMap.keySet().contains(wordArray[j])) {
@@ -72,25 +71,16 @@ public class MyCreateIndex {
 		}
 
 		if (hashResult.size() > 0) {
-			long start,end;
-			StringBuilder value = new StringBuilder("");
+			String value = "";
 			System.out.println("现在正在建立索引内容，可能会需要较长时间，请耐心等待……");
-			start = System.currentTimeMillis();
 			for (String str : hashResult.keySet()) {
-				StringBuilder tmp = new StringBuilder(str).append("  ").append(hashResult.get(str));
-				//String tmp = str + "  " + hashResult.get(str); // 两个空格
-				value.append(tmp).append("#LINE#");
-				//value += (tmp + "#LINE#");
+				String tmp = str + "  " + hashResult.get(str); //两个空格
+				value += (tmp + "#LINE#");
 
 			}
-			end = System.currentTimeMillis();
-			System.out.println("索引内容建立完毕，共用时：" + (end - start) + "ms");
-			
 			System.out.println("现在正在将索引内容写入磁盘，可能会需要较长时间，请耐心等待……");
-			start = System.currentTimeMillis();
-			this.writeFileByChars("WebRoot/index.txt", value.toString());
-			end = System.currentTimeMillis();
-			System.out.println("索引内容写入完毕，共用时：" + (end - start) + "ms");
+			this.writeFileByChars("WebRoot/index.txt", value);
+			System.out.println("已经完成建立索引工作");
 		}
 
 	}
