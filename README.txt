@@ -39,6 +39,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 		去除了所有无用的第三方jar包，目前仅保留httpclient、htmlparser、IKAnalyzer三种个包。IKAnalyzer包的版本由IKAnalyzer3.2.8更新到IKAnalyzer2012_u6，切词效果更加优秀。
 	Version 0.09
 		HttpClient包由Httpclient-3.0.1更新到最新的httpcomponents-client-4.3.3，更新原因是旧包已经停止更新，且存在一些不良特性。由于版本跨越幅度较大，接口变化较大，所以本程序中的Crawler.DownLoadFile.java文件变化较大。
+	Version 0.10
+		实现了CreateIndex的大幅优化，相关部分效率提高近200倍。
 
 待实现和完善部分：
 	1、设置搜索框初始半透明提示文本。
@@ -46,7 +48,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 	3、争取用自己的分词方法代替第三方类库方法。
 	4、修复显示结果页面关键词重复的bug。
 	5、优化结果显示顺序。
-	6、提高index建立速度。
 	7、删除冗余代码。
 	8、实现搜索结果分页。
 	9、优化结果页面，比如网址链接蓝色显示，去除“……”。

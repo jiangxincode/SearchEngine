@@ -14,12 +14,13 @@ import java.util.HashMap;
 
 public class MyCreateIndex {
 	long start, end;
+	long temp = 0;
 
 	public MyCreateIndex() {
 		HashMap<String, String> hashResult = new HashMap<String, String>();
 		File dirFile = new File("wordDoc");
 		File[] fileList = dirFile.listFiles();
-		
+
 		System.out.println("正在对文本内容进行分析，可能会需要较长时间，请耐心等待……");
 		start = System.currentTimeMillis();
 		for (int i = 0; i < fileList.length; i++) {
@@ -37,18 +38,19 @@ public class MyCreateIndex {
 				} else
 					hashMap.put(wordArray[j], new Integer(1));
 			}
+			// 获得标题
+			String title_origin = ReadAndWrite.readFileByChars("titleDoc/"
+					+ fileName, "gbk");
+			// 获得跟词相关的部分内容
+			String fullContent_origin = ReadAndWrite.readFileByChars("srcDoc/"
+					+ fileName, "gbk");
 			for (String str : hashMap.keySet()) {
-
-				// 获得标题
-				String title = ReadAndWrite.readFileByChars("titleDoc/"
-						+ fileName, "gbk");
-
-				// 获得跟词相关的部分内容
-				String fullContent = ReadAndWrite.readFileByChars("srcDoc/"
-						+ fileName, "gbk");
-				StringBuilder partContent = new StringBuilder("");
+				String title = title_origin;
+				String fullContent = fullContent_origin;
+				String partContent = "";
 				int wordStart = fullContent.indexOf(str);// 包含词的位置
 				while (wordStart > 0) {
+					String strTmp;
 					int s = 0, e = fullContent.length();
 					if (wordStart > 10)
 						s = wordStart - 10;
@@ -56,8 +58,10 @@ public class MyCreateIndex {
 						s = 0;
 					if (e > (wordStart + 10))
 						e = wordStart + 10;
-					partContent.append(fullContent.substring(s, e)).append("......");
-					//partContent += (strTmp + "......");
+					strTmp = fullContent.substring(s, e);
+					// partContent.append(fullContent.substring(s,
+					// e)).append("......");
+					partContent += (strTmp + "......");
 					fullContent = fullContent.substring(e);
 					wordStart = fullContent.indexOf(str);
 				}
@@ -78,7 +82,7 @@ public class MyCreateIndex {
 
 		if (hashResult.size() > 0) {
 			StringBuilder value = new StringBuilder("");
-			
+
 			System.out.println("现在正在建立索引内容，可能会需要较长时间，请耐心等待……");
 			start = System.currentTimeMillis();
 			for (String str : hashResult.keySet()) {

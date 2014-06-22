@@ -12,14 +12,11 @@ import java.nio.channels.FileChannel;
 
 public class ReadAndWrite {
 	public static String readFileByChars(String fileName, String encoding) {
-		File f = new File(fileName);
-		StringBuffer result;
 		try {
 			String s = null;
-			result = new StringBuffer();
-			FileInputStream in = new FileInputStream(f);
-			InputStreamReader r = new InputStreamReader(in, encoding);
-			BufferedReader rin = new BufferedReader(r);
+			StringBuilder result = new StringBuilder();
+			BufferedReader rin = new BufferedReader(new InputStreamReader(
+					new FileInputStream(new File(fileName)), encoding));
 			while ((s = rin.readLine()) != null) {
 				result.append(s);
 			}
@@ -45,6 +42,7 @@ public class ReadAndWrite {
 			bb.clear();
 			bb = null;
 			out2.close();
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
