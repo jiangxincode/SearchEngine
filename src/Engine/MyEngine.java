@@ -1,7 +1,7 @@
 /**
  * 描述：搜索引擎，读取索引文件按照索引上词频来排序显示结果
  * 作者：蒋鑫
-**/
+ **/
 package Engine;
 
 import java.io.BufferedReader;
@@ -23,7 +23,10 @@ public class MyEngine {
 	String indexFile; // the index file
 	Vector<String> vecKey = new Vector<String>();
 	HashMap<String, String> hashWord = null;
+	final int isOr = 0;
+	final int isAnd = 1;
 	long time = 0;
+	int symbol = 0;
 
 	public MyEngine() {
 	}
@@ -52,13 +55,67 @@ public class MyEngine {
 
 	// 获得结果集合
 	public ArrayList<ResultModel> getResultSet(String key) {
+		int pos = key.indexOf("&");
+		if (pos > 0) {
+			symbol = 1;
+			String keyBefore = key.substring(0, pos);
+			String keyAfter = key.substring(pos + 1, key.length());
+			vecKey.add(keyBefore);
+			vecKey.add(keyAfter);
+			System.out.println("keyBefore is:" + keyBefore + "keyAfter is:"
+					+ keyAfter);
+			ArrayList<ResultModel> modList = new ArrayList<ResultModel>();
+			ArrayList<ResultModel> modListBefore = new ArrayList<ResultModel>();
+			ArrayList<ResultModel> modListAfter = new ArrayList<ResultModel>();
+			if (this.hashWord.size() > 0) {
+				long begin = System.currentTimeMillis();
+				ResultModel[] modArray = null;
+				String resultBefore = this.hashWord.get(keyBefore);
+				String resultAfter = this.hashWord.get(keyAfter);
+				String[] array = resultBefore.split("#next#"); // 得到存在该关键字的所有文本文件信息
+				modArray = new ResultModel[array.length]; // 每个文本文件信息都可以获得一个ResultModel
+				for (int i = 0; i < array.length; i++)
+					modArray[i] = new ResultModel(keyBefore, array[i]);
+
+				if (modArray != null) {
+					for (int i = 0; i < modArray.length; i++) {
+						modListBefore.add(modArray[i]);
+					}
+					// 将结果按照词频排序
+					Collections.sort(modList, new sortByWordNum());
+				}
+				array = resultAfter.split("#next#"); // 得到存在该关键字的所有文本文件信息
+				modArray = new ResultModel[array.length]; // 每个文本文件信息都可以获得一个ResultModel
+				for (int i = 0; i < array.length; i++)
+					modArray[i] = new ResultModel(keyAfter, array[i]);
+
+				if (modArray != null) {
+					for (int i = 0; i < modArray.length; i++) {
+						modListAfter.add(modArray[i]);
+					}
+					// 将结果按照词频排序
+					Collections.sort(modList, new sortByWordNum());
+				}
+				for(int i=0;i<modListAfter.size();i++) {
+					for(int j=0;j<modListBefore.size();j++) {
+						if(modListBefore.get(j).getUrl().equals(modListAfter.get(i).getUrl())) {
+							modList.add(modListBefore.get(j));
+						}
+					}
+				}
+				long end = System.currentTimeMillis();
+				this.time += (end - begin);
+			}
+			return modList;
+		}
+
 		ArrayList<ResultModel> modList = new ArrayList<ResultModel>();
 		if (this.hashWord.size() > 0) {
 			long begin = System.currentTimeMillis();
 			ResultModel[] modArray = null;
 			// 对关键字分词
-			StringReader strReader = new StringReader(key);
-			IKSegmenter iksegmentation = new IKSegmenter(strReader,true);
+			IKSegmenter iksegmentation = new IKSegmenter(new StringReader(key),
+					true);
 			Lexeme lexeme = null;
 			try {
 				while ((lexeme = iksegmentation.next()) != null) {
@@ -129,8 +186,9 @@ public class MyEngine {
 				"</font>[\\W]*<font style='color:#ff0000;font-weight:bold;'>",
 				"");
 	}
+
 	public static void main(String[] argv) {
-		//MyEngine index = new MyEngine("WebRoot/index.txt");
-		//ArrayList<ResultModel>testList = index.getResultSet("中国");
+		MyEngine index = new MyEngine("WebRoot/index.txt");
+		ArrayList<ResultModel> testList = index.getResultSet("中国&美国");
 	}
 }
