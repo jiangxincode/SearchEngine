@@ -33,7 +33,9 @@ public class DownLoadFile {
 	//保存网页字节数组到本地文件 filePath 为要保存的文件的相对地址
 	private void saveToLocal(InputStream data, String filePath) {
 		try {
-			BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+			File result = new File(filePath);
+			result.getParentFile().mkdirs();
+			BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(result));
 			BufferedInputStream in = new BufferedInputStream(data);
 			int r;
 			while((r=in.read())!=-1) {

@@ -43,6 +43,7 @@ public class MySpilt {
 
 	public void segmentFile(String srcfilename, String resfilename) {
 		File filetemp = new File(resfilename);
+		filetemp.getParentFile().mkdirs();
 		if (!(filetemp.exists())) {
 			try {
 				filetemp.createNewFile();

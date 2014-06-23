@@ -35,6 +35,8 @@ public class ReadAndWrite {
 
 	public static void writeFileByChars(String fileName, String value) {
 		ByteBuffer byteBuffer = ByteBuffer.wrap(value.getBytes());
+		File filepath = new File(fileName);
+		filepath.getParentFile().mkdirs();
 		FileChannel out;
 		try {
 			out = new FileOutputStream(fileName).getChannel();
