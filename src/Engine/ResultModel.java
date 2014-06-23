@@ -49,4 +49,10 @@ public class ResultModel {
 	public void addWordV(int v) {
 		this.wordV += v;
 	}
+
+	public void printInfo() {
+		System.out.println(word);
+		System.out.println(url);
+		
+	}
 }

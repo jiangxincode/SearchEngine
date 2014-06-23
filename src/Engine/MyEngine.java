@@ -190,5 +190,10 @@ public class MyEngine {
 	public static void main(String[] argv) {
 		MyEngine index = new MyEngine("WebRoot/index.txt");
 		ArrayList<ResultModel> testList = index.getResultSet("中国&美国");
+		for(int i=0;i<testList.size();i++) {
+			testList.get(i).printInfo();
+			System.out.println(i);
+		}
+		
 	}
 }
