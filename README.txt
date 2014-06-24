@@ -46,7 +46,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 	Version 0.12
 		创建AllInOne类，可以将所有步骤一次执行完毕。同时修复了各个子程序中写文件父目录不存在时产生异常的bug。
 	Version 0.13
-		实现了简单的双词Boolean检索，利用英文&可以实现交操作，默认情况下为并操作。
+		实现了简单的双词交运算查询，利用英文&可以实现交操作，如：中国&美国。默认情况下为并操作。
+	Version 0.14
+		实现了简单的双词差运算查询，利用英文-可以实现差操作，如：中国-美国。默认情况下为并操作。
 
 待实现和完善部分：
 	1、设置搜索框初始半透明提示文本。

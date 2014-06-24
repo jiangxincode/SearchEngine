@@ -108,6 +108,62 @@ public class MyEngine {
 			}
 			return modList;
 		}
+		int posDiff = key.indexOf("-");
+		if (posDiff > 0) {
+			symbol = 1;
+			String keyBefore = key.substring(0, posDiff);
+			String keyAfter = key.substring(posDiff + 1, key.length());
+			vecKey.add(keyBefore);
+			vecKey.add(keyAfter);
+			System.out.println("keyBefore is:" + keyBefore + "keyAfter is:"
+					+ keyAfter);
+			ArrayList<ResultModel> modList = new ArrayList<ResultModel>();
+			ArrayList<ResultModel> modListBefore = new ArrayList<ResultModel>();
+			ArrayList<ResultModel> modListAfter = new ArrayList<ResultModel>();
+			if (this.hashWord.size() > 0) {
+				long begin = System.currentTimeMillis();
+				ResultModel[] modArray = null;
+				String resultBefore = this.hashWord.get(keyBefore);
+				String resultAfter = this.hashWord.get(keyAfter);
+				String[] array = resultBefore.split("#next#"); // 得到存在该关键字的所有文本文件信息
+				modArray = new ResultModel[array.length]; // 每个文本文件信息都可以获得一个ResultModel
+				for (int i = 0; i < array.length; i++)
+					modArray[i] = new ResultModel(keyBefore, array[i]);
+
+				if (modArray != null) {
+					for (int i = 0; i < modArray.length; i++) {
+						modListBefore.add(modArray[i]);
+					}
+					// 将结果按照词频排序
+					Collections.sort(modList, new sortByWordNum());
+				}
+				array = resultAfter.split("#next#"); // 得到存在该关键字的所有文本文件信息
+				modArray = new ResultModel[array.length]; // 每个文本文件信息都可以获得一个ResultModel
+				for (int i = 0; i < array.length; i++)
+					modArray[i] = new ResultModel(keyAfter, array[i]);
+
+				if (modArray != null) {
+					for (int i = 0; i < modArray.length; i++) {
+						modListAfter.add(modArray[i]);
+					}
+					// 将结果按照词频排序
+					Collections.sort(modList, new sortByWordNum());
+				}
+				for(int i=0;i<modListAfter.size();i++) {
+					for(int j=0;j<modListBefore.size();j++) {
+						if(modListBefore.get(j).getUrl().equals(modListAfter.get(i).getUrl())) {
+							modListBefore.remove(j);
+						}
+					}
+				}
+				for(int i=0;i<modListBefore.size();i++) {
+					modList.add(modListBefore.get(i));
+				}
+				long end = System.currentTimeMillis();
+				this.time += (end - begin);
+			}
+			return modList;
+		}
 
 		ArrayList<ResultModel> modList = new ArrayList<ResultModel>();
 		if (this.hashWord.size() > 0) {
