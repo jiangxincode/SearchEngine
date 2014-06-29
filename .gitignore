@@ -52,4 +52,5 @@ WebRoot/Images/
 lib/
 index.txt
 wordtable.txt
+*.pdf
 # =========================

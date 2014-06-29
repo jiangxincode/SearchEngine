@@ -49,6 +49,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 		实现了简单的双词交运算查询，利用英文&可以实现交操作，如：中国&美国。默认情况下为并操作。
 	Version 0.14
 		实现了简单的双词差运算查询，利用英文-可以实现差操作，如：中国-美国。默认情况下为并操作。
+	Version 0.15
+		为主程序提供了运行选项，选择是否删除已爬取的内容，是否自定义爬取数目。
 
 待实现和完善部分：
 	1、设置搜索框初始半透明提示文本。

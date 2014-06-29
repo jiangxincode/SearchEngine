@@ -9,8 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class MyCrawler {
-	final static int MAXNUM = 100; // the max amount of the web pages that
-									// crawled.
+	static int MAXNUM = 100; // the max amount of the web pages that crawled.
 	final static int MAXTHREADNUM = 10;
 	static int downloadFileNum = 0;
 	final int MAXSEEDSNUM = 10; // the max amount of the seeds.
@@ -19,10 +18,11 @@ public class MyCrawler {
 	public MyCrawler() {
 	}
 
-	public MyCrawler(String[] seeds) {
+	public MyCrawler(String[] seeds, int numOfCrawl) {
 		for (int i = 0; i < seeds.length; i++) {
 			LinkQueue.addUnvisitedUrl(seeds[i]);
 		}
+		MAXNUM = numOfCrawl;
 	}
 
 	private static class Crawling implements Runnable {
@@ -73,7 +73,8 @@ public class MyCrawler {
 	public static void main(String[] args) {
 		long start = 0, end = 0;
 		start = System.currentTimeMillis();
-		new MyCrawler(new String[] { "http://news.nju.edu.cn/index.html" });
+		new MyCrawler(new String[] { "http://news.nju.edu.cn/index.html" },
+				Integer.valueOf(args[0]));
 		ExecutorService executors = Executors.newFixedThreadPool(10);
 		for (int i = 0; i < MAXTHREADNUM; i++) {
 			executors.execute(new Crawling());
