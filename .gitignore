@@ -1,16 +1,9 @@
 # =========================
 # for jiangxin
-.settings/
-.project
-.classpath
 srcDoc/
 titleDoc/
 wordDoc/
 html/
-others/
 WebRoot/WEB-INF/classes/
-WebRoot/WEB-INF/lib/
-WebRoot/META-INF/
-WebRoot/Images/
 WebRoot/index.txt
 # =========================
