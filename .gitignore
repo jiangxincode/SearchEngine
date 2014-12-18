@@ -1,9 +1,8 @@
-# =========================
-# for jiangxin
+.*
 srcDoc/
 titleDoc/
 wordDoc/
 html/
 WebRoot/WEB-INF/classes/
 WebRoot/index.txt
-# =========================
+
