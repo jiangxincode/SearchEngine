@@ -17,7 +17,7 @@
 			ServletContext app = (ServletContext) pageContext.getServletContext();
 			String strPath = app.getRealPath("/");
 			
-			myEngine = new Engine.MyEngine(strPath+"index.txt");
+			myEngine = new Engine.MyEngine(strPath+"/index.txt");
 			list = myEngine.getResultSet(keyword);
 			
 			if(list==null)isResult = false;
