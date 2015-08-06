@@ -37,11 +37,13 @@ public class ReadAndWrite {
 		value = null;
 		FileChannel out2;
 		try {
-			out2 = new FileOutputStream(path).getChannel();
+			FileOutputStream fos = new FileOutputStream(path);
+			out2 = fos.getChannel();
 			out2.write(bb);
 			bb.clear();
 			bb = null;
 			out2.close();
+			fos.close();
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

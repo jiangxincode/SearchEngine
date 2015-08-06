@@ -39,11 +39,13 @@ public class ReadAndWrite {
 		filepath.getParentFile().mkdirs();
 		FileChannel out;
 		try {
-			out = new FileOutputStream(fileName).getChannel();
+			FileOutputStream outputStream = new FileOutputStream(fileName);
+			out = outputStream.getChannel();
 			out.write(byteBuffer);
 			byteBuffer.clear();
 			byteBuffer = null;
 			out.close();
+			outputStream.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
