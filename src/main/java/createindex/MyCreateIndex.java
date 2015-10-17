@@ -2,7 +2,7 @@
  * 描述：将分好词的文档统计词频并且形成倒排索引文件，存入index.txt文档中
  * 作者：蒋鑫
  * */
-package CreateIndex;
+package createindex;
 
 import java.io.BufferedWriter;
 import java.io.File;

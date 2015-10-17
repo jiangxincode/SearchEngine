@@ -2,7 +2,7 @@
  * 描述：分析网页内容，提取其中的链接
  * 作者：蒋鑫
 **/
-package Crawler;
+package crawler;
 
 import java.util.HashSet;
 import java.util.Set;

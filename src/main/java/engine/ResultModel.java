@@ -2,7 +2,7 @@
  * 描述：结果模型，用来存放单个的检索结果
  * 作者：蒋鑫
 **/
-package Engine;
+package engine;
 
 // String tmp = str + " " + fileName +"#split#" + title + "#split#" + hashMap.get(str) + "#split#" + num + "#next#"
 public class ResultModel {

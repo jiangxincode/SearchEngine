@@ -1,4 +1,8 @@
-package CreateIndex;
+/**
+ * 描述：定义文件读写方法类，供主程序使用
+ * 作者：蒋鑫
+**/
+package html2test;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,12 +15,11 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 public class ReadAndWrite {
-	public static String readFileByChars(String fileName, String encoding) {
+	public static String readFileByChars(String fileName) {
 		try {
 			String s = null;
-			StringBuilder result = new StringBuilder();
-			BufferedReader rin = new BufferedReader(new InputStreamReader(
-					new FileInputStream(new File(fileName)), encoding));
+			StringBuffer result = new StringBuffer();
+			BufferedReader rin = new BufferedReader(new InputStreamReader(new FileInputStream(new File(fileName)), "UTF-8"));
 			while ((s = rin.readLine()) != null) {
 				result.append(s);
 			}
@@ -31,20 +34,18 @@ public class ReadAndWrite {
 	}
 
 	public static void writeFileByChars(String fileName, String value) {
-
-		String path = fileName;
-		ByteBuffer bb = ByteBuffer.wrap(value.getBytes());
-		value = null;
-		FileChannel out2;
+		ByteBuffer byteBuffer = ByteBuffer.wrap(value.getBytes());
+		File filepath = new File(fileName);
+		filepath.getParentFile().mkdirs();
+		FileChannel out;
 		try {
-			FileOutputStream fos = new FileOutputStream(path);
-			out2 = fos.getChannel();
-			out2.write(bb);
-			bb.clear();
-			bb = null;
-			out2.close();
-			fos.close();
-
+			FileOutputStream outputStream = new FileOutputStream(fileName);
+			out = outputStream.getChannel();
+			out.write(byteBuffer);
+			byteBuffer.clear();
+			byteBuffer = null;
+			out.close();
+			outputStream.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

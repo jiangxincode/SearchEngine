@@ -1,4 +1,4 @@
-package AllInOne;
+package allinone;
 
 import java.io.IOException;
 
@@ -25,10 +25,10 @@ public class Easy {
 			String[] deleteDirs = new String[]{"target/html/","target/srcDoc/","target/titleDoc/","target/wordDoc/","src/main/webapp/index.txt"};
 			DeleteDirectory.deleteDirs(deleteDirs);
 		}
-		Crawler.MyCrawler.main(forCrawler);
-		HtmlToTest.MyHtmlToTest.main(null);
-		Split.MySpilt.main(null);
-		CreateIndex.MyCreateIndex.main(null);
+		crawler.MyCrawler.main(forCrawler);
+		html2test.MyHtmlToTest.main(null);
+		split.MySpilt.main(null);
+		createindex.MyCreateIndex.main(null);
 	}
 
 }

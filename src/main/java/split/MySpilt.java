@@ -2,7 +2,7 @@
  * 描述：实现文件的中文分词
  * 作者：蒋鑫
 **/
-package Split;
+package split;
 
 import java.io.File;
 import java.io.FileNotFoundException;

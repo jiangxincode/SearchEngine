@@ -2,7 +2,7 @@
  * 描述：主要数据结构的类定义
  * 作者：蒋鑫
  **/
-package Crawler;
+package crawler;
 
 import java.util.HashSet;
 import java.util.PriorityQueue;

@@ -2,7 +2,7 @@
  * 描述：根据URL下载网页到本地
  * 作者：蒋鑫
 **/
-package Crawler;
+package crawler;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

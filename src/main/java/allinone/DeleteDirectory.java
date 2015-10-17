@@ -3,7 +3,7 @@
  * 删除目录
  */
 
-package AllInOne;
+package allinone;
 import java.io.File;
 
 public class DeleteDirectory {
