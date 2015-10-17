@@ -1,0 +1,41 @@
+body {
+	font-family:"宋体","Arial Narrow";
+	font-size:12px;
+	line-height:22px;
+	margin:0px; padding:0px;
+	background-color:#FFFFFF;
+}
+
+/* 顶部样式 */
+#header{
+	margin: 40px auto;
+	width: 900px;
+	text-align: center;
+}
+
+#header a{ text-decoration:none; color:#656D77; }
+#header a:hover{ color:Red; text-decoration:underline;}
+/*#End--------------------------------------------------------------------------*/
+
+/* 版权样式 */
+#copyright{ margin:10px auto; width:900px; text-align:center; color:#656D77; padding-bottom:10px;}
+#copyright a{ text-decoration:none; color:#656D77; }
+/*#End--------------------------------------------------------------------------*/
+
+/* 控件样式表 */
+.inputText{ border-bottom:1px solid #BDC5CA; border-right:1px solid #BDC5CA; border-top:1px solid #6F787E; border-left:1px solid #6F787E; padding:5px; font-size:14px; background-color:#F5F5F5; width:750px; }
+.inputSubmit{ font-size:14px; padding:5px 5px 2px 5px;width:100px}
+/*#End--------------------------------------------------------------------------*/
+
+/* 找找看结果样式 */
+.header{ margin:10px auto; width:990px;}
+
+.headerBaseInfo{ margin:10px auto; width:980px; background-color:#d5ddf3; height:24px; line-height:24px; border-top:solid 1px #3366cc; padding-right:10px; color:#000000; text-align:right; position:relative;}
+.headerBaseInfo a{ left:10px; top:0px; position:absolute; text-decoration:none; color:#000000;}
+
+.resultBoby{ margin:10px auto; width:990px; position:relative;}
+
+.bobyTitle{ margin-top:10px; margin-left:0px; font-size:15px; }
+.bobyContent{ margin-top:5px; margin-left:0px; margin-right:20px; font-size:13px; text-indent:2em;}
+.bobyUrl{ margin-top:5px; margin-left:0px; }
+/*#End--------------------------------------------------------------------------*/
