@@ -29,8 +29,6 @@ public class MyCrawler {
 
 		@Override
 		public void run() {
-
-			// TODO Auto-generated method stub
 			// 定义过滤器，提取以http://www.nju.edu.cn开头的链接
 			LinkFilter filter = new LinkFilter() {
 				public boolean accept(String url) {

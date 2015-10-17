@@ -87,7 +87,6 @@ public class DownLoadFile {
 				saveToLocal(entityContent, filePath);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("成功下载文件" + filePath + "到本地"); //not very bad

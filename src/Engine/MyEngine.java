@@ -179,7 +179,6 @@ public class MyEngine {
 					vecKey.add(lexeme.getLexemeText());
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			// 分别查找各个词在索引中的匹配

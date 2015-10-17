@@ -57,7 +57,6 @@ public class LinkQueue {
 				System.out.println(visitUrl + "Àë¿ªunVisitedUrl¶ÓÁÐ"); // bad
 			
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			lock.unlock();
