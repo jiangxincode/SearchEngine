@@ -6,6 +6,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
+	<repositories>
+		<repository>
+			<id>osc_thirdparty</id>
+			<url>http://maven.oschina.net/content/repositories/thirdparty/</url>
+		</repository>
+	</repositories>
 	<dependencies>
 
 		<dependency>
