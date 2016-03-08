@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
 
 public class ReadAndWrite {
 	public static String readFileByChars(String fileName, String encoding) {
@@ -36,17 +37,15 @@ public class ReadAndWrite {
 
 	public static void writeFileByChars(String fileName, String value) {
 
-		String path = fileName;
-		ByteBuffer bb = ByteBuffer.wrap(value.getBytes());
-		value = null;
-		FileChannel out2;
+		ByteBuffer byteBuffer = ByteBuffer.wrap(value.getBytes());
+		FileChannel fileChannel = null;
 		try {
-			FileOutputStream fos = new FileOutputStream(path);
-			out2 = fos.getChannel();
-			out2.write(bb);
-			bb.clear();
-			bb = null;
-			out2.close();
+			FileOutputStream fos = new FileOutputStream(fileName);
+			fileChannel = fos.getChannel();
+			FileLock fileLock = fileChannel.tryLock(); //加锁
+			fileChannel.write(byteBuffer);
+			fileLock.release(); //解锁
+			fileChannel.close();
 			fos.close();
 
 		} catch (FileNotFoundException e) {
