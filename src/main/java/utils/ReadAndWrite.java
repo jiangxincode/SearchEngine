@@ -1,4 +1,4 @@
-package createindex;
+package utils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -28,6 +28,10 @@ public class ReadAndWrite {
 			e.printStackTrace();
 		}
 		return "";
+	}
+
+	public static String readFileByChars(String fileName) {
+		return readFileByChars(fileName, "UTF-8");
 	}
 
 	public static void writeFileByChars(String fileName, String value) {
