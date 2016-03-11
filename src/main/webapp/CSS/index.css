@@ -30,11 +30,11 @@ body {
 .header{ margin:10px auto; width:990px;}
 
 .headerBaseInfo{ margin:10px auto; width:980px; background-color:#d5ddf3; height:24px; line-height:24px; border-top:solid 1px #3366cc; padding-right:10px; color:#000000; text-align:right; position:relative;}
-.headerBaseInfo a{ left:10px; top:0px; position:absolute; text-decoration:none; color:#000000;}
+.headerBaseInfo a{ left:10px; position:absolute; text-decoration:none; color:#000000;}
 
 .resultBoby{ margin:10px auto; width:990px; position:relative;}
 
-.bobyTitle{ margin-top:10px; margin-left:0px; font-size:15px; }
-.bobyContent{ margin-top:5px; margin-left:0px; margin-right:20px; font-size:13px; text-indent:2em;}
-.bobyUrl{ margin-top:5px; margin-left:0px; }
+.bobyTitle{ margin-top:10px; font-size:15px; }
+.bobyContent{ margin-top:5px; margin-right:20px; font-size:13px; text-indent:2em;}
+.bobyUrl{ margin-top:5px; }
 /*#End--------------------------------------------------------------------------*/
