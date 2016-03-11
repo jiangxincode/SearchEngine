@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/jiangxincode/SearchEngine.svg?branch=master)](https://travis-ci.org/jiangxincode/SearchEngine)
 [![Build status](https://ci.appveyor.com/api/projects/status/m5r92mlo6874n877/branch/master?svg=true)](https://ci.appveyor.com/project/jiangxincode/searchengine/branch/master)
 [![Coverage Status](https://coveralls.io/repos/github/jiangxincode/SearchEngine/badge.svg?branch=master)](https://coveralls.io/github/jiangxincode/SearchEngine?branch=master)
+[![Code Climate](https://codeclimate.com/github/jiangxincode/SearchEngine/badges/gpa.svg)](https://codeclimate.com/github/jiangxincode/SearchEngine)
 
 SearchEngine is a simple search engine written in Java, JSP, CSS, JS and HTML. This project is just for learning the basic concepts of search engine, thus avoid use it in your real work condition, it just a toy! If you have some questions about this project please contact me, and any pull request is really welcomed! My information is put below.
 
