@@ -1,5 +1,7 @@
 # SearchEngine
 
+[![Build Status](https://travis-ci.org/jiangxincode/SearchEngine.svg?branch=master)](https://travis-ci.org/jiangxincode/SearchEngine)
+
 SearchEngine is a simple search engine written in Java, JSP, CSS, JS and HTML. This project is just for learning the basic concepts of search engine, thus avoid use it in your real work condition, it just a toy! If you have some questions about this project please contact me, and any pull request is really welcomed! My information is put below.
 
 * Aloy
