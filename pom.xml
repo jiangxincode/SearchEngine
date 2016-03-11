@@ -6,12 +6,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<repositories>
-		<repository>
-			<id>osc_thirdparty</id>
-			<url>http://maven.oschina.net/content/repositories/thirdparty/</url>
-		</repository>
-	</repositories>
 	<dependencies>
 
 		<dependency>
@@ -23,11 +17,6 @@
 			<groupId>org.htmlparser</groupId>
 			<artifactId>htmlparser</artifactId>
 			<version>2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>IKAnalyzer</groupId>
-			<artifactId>IKAnalyzer</artifactId>
-			<version>2012FF_u1</version>
 		</dependency>
 
 	</dependencies>
