@@ -34,6 +34,5 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/IKAnalyzer-2012FF_u1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
