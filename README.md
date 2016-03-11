@@ -7,7 +7,7 @@
 [![Code Climate](https://codeclimate.com/github/jiangxincode/SearchEngine/badges/gpa.svg)](https://codeclimate.com/github/jiangxincode/SearchEngine)
 [![Issue Count](https://codeclimate.com/github/jiangxincode/SearchEngine/badges/issue_count.svg)](https://codeclimate.com/github/jiangxincode/SearchEngine)
 [![CodeOfConduct](https://img.shields.io/badge/code%20of%20conduct-1.3.0-ff69b4.svg)](http://contributor-covenant.org/version/1/3/0/)
-
+[![Dependency Status](https://www.versioneye.com/user/projects/56e2dc65df573d003a5f5c01/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56e2dc65df573d003a5f5c01)
 
 SearchEngine is a simple search engine written in Java, JSP, CSS, JS and HTML. This project is just for learning the basic concepts of search engine, thus avoid use it in your real work condition, it just a toy! If you have some questions about this project please contact me, and any pull request is really welcomed! My information is put below.
 
