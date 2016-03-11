@@ -1,0 +1,22 @@
+diff --git a/.codeclimate.yml b/.codeclimate.yml
+index e69de29..1b9f3be 100644
+--- a/.codeclimate.yml
++++ b/.codeclimate.yml
+@@ -0,0 +1,10 @@
++---
++engines:
++  csslint:
++    enabled: true
++  fixme:
++    enabled: true
++ratings:
++  paths:
++  - "**.css"
++exclude_paths: []
+diff --git a/.csslintrc b/.csslintrc
+index e69de29..aacba95 100644
+--- a/.csslintrc
++++ b/.csslintrc
+@@ -0,0 +1,2 @@
++--exclude-exts=.min.css
++--ignore=adjoining-classes,box-model,ids,order-alphabetical,unqualified-attributes
