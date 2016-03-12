@@ -2,7 +2,7 @@
  * 描述：将分好词的文档统计词频并且形成倒排索引文件，存入index.txt文档中
  * 作者：蒋鑫
  * */
-package createindex;
+package edu.jiangxin.searchengine.createindex;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.HashMap;
 
-import utils.ReadAndWrite;
+import edu.jiangxin.searchengine.utils.ReadAndWrite;
 
 public class MyCreateIndex {
 	long start, end;

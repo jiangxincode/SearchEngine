@@ -1,4 +1,4 @@
-package utils;
+package edu.jiangxin.searchengine.utils;
 
 import java.io.BufferedReader;
 import java.io.File;

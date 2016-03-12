@@ -2,7 +2,7 @@
  * 描述：爬虫主程序
  * 作者：蒋鑫
  **/
-package crawler;
+package edu.jiangxin.searchengine.crawler;
 
 import java.util.Set;
 import java.util.concurrent.ExecutorService;

@@ -2,7 +2,7 @@
  * 描述：实现ResultModel的Comparator接口
  * 作者：蒋鑫
 **/
-package engine;
+package edu.jiangxin.searchengine.engine;
 
 import java.util.Comparator;
 

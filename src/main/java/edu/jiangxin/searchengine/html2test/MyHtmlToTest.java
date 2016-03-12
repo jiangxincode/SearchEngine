@@ -2,7 +2,7 @@
  * 描述：分析之前抓取的网页，并提取出文本，存储在对应文件中以备用来分词，另外将文章的标题抓下来存入了以新闻编号为名的txt文档中
  * 作者：蒋鑫
 **/
-package html2test;
+package edu.jiangxin.searchengine.html2test;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,7 +10,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import utils.ReadAndWrite;
+import edu.jiangxin.searchengine.utils.ReadAndWrite;
 
 public class MyHtmlToTest {
 	public MyHtmlToTest() throws IOException {

@@ -2,7 +2,7 @@
  * 描述：搜索引擎，读取索引文件按照索引上词频来排序显示结果
  * 作者：蒋鑫
  **/
-package engine;
+package edu.jiangxin.searchengine.engine;
 
 import java.io.BufferedReader;
 import java.io.File;
