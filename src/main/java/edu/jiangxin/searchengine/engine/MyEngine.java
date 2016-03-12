@@ -82,7 +82,7 @@ public class MyEngine {
 						modListBefore.add(modArray[i]);
 					}
 					// 将结果按照词频排序
-					Collections.sort(modList, new sortByWordNum());
+					Collections.sort(modList, new SortByWordNum());
 				}
 				array = resultAfter.split("#next#"); // 得到存在该关键字的所有文本文件信息
 				modArray = new ResultModel[array.length]; // 每个文本文件信息都可以获得一个ResultModel
@@ -94,7 +94,7 @@ public class MyEngine {
 						modListAfter.add(modArray[i]);
 					}
 					// 将结果按照词频排序
-					Collections.sort(modList, new sortByWordNum());
+					Collections.sort(modList, new SortByWordNum());
 				}
 				for(int i=0;i<modListAfter.size();i++) {
 					for(int j=0;j<modListBefore.size();j++) {
@@ -135,7 +135,7 @@ public class MyEngine {
 						modListBefore.add(modArray[i]);
 					}
 					// 将结果按照词频排序
-					Collections.sort(modList, new sortByWordNum());
+					Collections.sort(modList, new SortByWordNum());
 				}
 				array = resultAfter.split("#next#"); // 得到存在该关键字的所有文本文件信息
 				modArray = new ResultModel[array.length]; // 每个文本文件信息都可以获得一个ResultModel
@@ -147,7 +147,7 @@ public class MyEngine {
 						modListAfter.add(modArray[i]);
 					}
 					// 将结果按照词频排序
-					Collections.sort(modList, new sortByWordNum());
+					Collections.sort(modList, new SortByWordNum());
 				}
 				for(int i=0;i<modListAfter.size();i++) {
 					for(int j=0;j<modListBefore.size();j++) {
@@ -200,7 +200,7 @@ public class MyEngine {
 					// 合并相同出处内容的词频
 					this.ResultMerger(modList);
 					// 将结果按照词频排序
-					Collections.sort(modList, new sortByWordNum());
+					Collections.sort(modList, new SortByWordNum());
 				}
 			}
 			long end = System.currentTimeMillis();

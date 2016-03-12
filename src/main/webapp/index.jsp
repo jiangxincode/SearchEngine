@@ -1,8 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="edu.jiangxin.searchengine.engine.MyEngine"%>
+<%@ page language="java" import="edu.jiangxin.searchengine.engine.ResultModel"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-	Engine.MyEngine myEngine = null;
-	ArrayList<Engine.ResultModel> list=null;
+	MyEngine myEngine = null;
+	ArrayList<ResultModel> list=null;
 	boolean isResult = false;
 	String keyword = request.getParameter("keyWord");
 	if(keyword!=null)
@@ -17,7 +19,7 @@
 			ServletContext app = (ServletContext) pageContext.getServletContext();
 			String strPath = app.getRealPath("/");
 
-			myEngine = new Engine.MyEngine(strPath+"/index.idx");
+			myEngine = new MyEngine(strPath+"/index.idx");
 			list = myEngine.getResultSet(keyword);
 
 			if(list==null)isResult = false;
@@ -72,7 +74,7 @@
 			 {
 				for(Object o:list)
 				{
-					Engine.ResultModel mod = (Engine.ResultModel)o;
+					ResultModel mod = (ResultModel)o;
 			%>
 		<div class="bobyTitle">
 			<a href="<%=mod.getUrl() %>" target="_blank"> <%= myEngine.HighLightKey(mod.getTitle()) %>

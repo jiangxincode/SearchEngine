@@ -6,7 +6,7 @@ package edu.jiangxin.searchengine.engine;
 
 import java.util.Comparator;
 
-public class sortByWordNum implements Comparator<Object> {
+public class SortByWordNum implements Comparator<Object> {
 	public int compare(Object object1, Object object2) {
 		ResultModel s1 = (ResultModel) object1;
 		ResultModel s2 = (ResultModel) object2;

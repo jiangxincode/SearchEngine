@@ -27,7 +27,7 @@ public class SearchEngineTest {
 
 	@Test
 	public void testSearchEngine() {
-		String [] argv = {"-n", "50", "-deleteDir"};
+		String [] argv = {"-n", "10", "-deleteDir"};
 		for(int i=0;i<argv.length;i++) {
 			//System.out.println(i); //bad
 			String temp = argv[i].substring(1);
@@ -49,7 +49,7 @@ public class SearchEngineTest {
 		long start = 0, end = 0;
 		start = System.currentTimeMillis();
 		//new MyCrawler(new String[] { "http://news.nju.edu.cn/index.html" },Integer.valueOf(args[0]));
-		new MyCrawler(new String[] { "http://news.nju.edu.cn/index.html" }, Integer.valueOf(100));
+		new MyCrawler(new String[] { "http://news.nju.edu.cn/index.html" }, Integer.valueOf(10));
 		ExecutorService executors = Executors.newFixedThreadPool(10);
 		for (int i = 0; i < MAXTHREADNUM; i++) {
 			executors.execute(new Crawling());

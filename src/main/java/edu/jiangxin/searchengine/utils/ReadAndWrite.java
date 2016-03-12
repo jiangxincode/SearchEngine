@@ -40,6 +40,11 @@ public class ReadAndWrite {
 		ByteBuffer byteBuffer = ByteBuffer.wrap(value.getBytes());
 		FileChannel fileChannel = null;
 		try {
+			File file = new File(fileName);
+			if(!file.getParentFile().exists())
+			{
+				file.getParentFile().mkdirs();
+			}
 			FileOutputStream fos = new FileOutputStream(fileName);
 			fileChannel = fos.getChannel();
 			FileLock fileLock = fileChannel.tryLock(); //加锁
