@@ -1,4 +1,4 @@
-package edu.jiangxin.searchengine.commonutils;
+package edu.jiangxin.searchengine.utils;
 
 import java.io.File;
 
