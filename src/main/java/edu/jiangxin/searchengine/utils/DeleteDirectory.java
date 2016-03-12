@@ -3,7 +3,7 @@
  * 删除目录
  */
 
-package edu.jiangxin.searchengine.allinone;
+package edu.jiangxin.searchengine.utils;
 import java.io.File;
 
 public class DeleteDirectory {

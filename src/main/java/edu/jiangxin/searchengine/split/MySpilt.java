@@ -21,7 +21,7 @@ public class MySpilt {
 		this.targetDir = target;
 	}
 
-	void segment() {
+	public void segment() {
 		segmentDir(this.sourceDir, this.targetDir);
 	}
 
