@@ -25,7 +25,7 @@ public class MyCrawler {
 		MAXNUM = numOfCrawl;
 	}
 
-	private static class Crawling implements Runnable {
+	public static class Crawling implements Runnable {
 
 		@Override
 		public void run() {

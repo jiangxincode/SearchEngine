@@ -27,6 +27,10 @@ public class MySpilt {
 
 	public void segmentDir(String source, String target) {
 		File[] file = new File(source).listFiles();
+		if(file == null)
+		{
+			return;
+		}
 		for (int i = 0; i < file.length; ++i) {
 			if (file[i].isFile()) {
 				segmentFile(file[i].getAbsolutePath(), target + File.separator
@@ -75,13 +79,18 @@ public class MySpilt {
 			}
 		} catch (IOException e2) {
 			e2.printStackTrace();
+		} finally {
+			if(filewriter != null) {
+				try {
+					filewriter.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 
-		try {
-			filewriter.close();
-		} catch (IOException e3) {
-			e3.printStackTrace();
-		}
+
 		System.out.println("成功对" + srcfilename + "进行分词");
 	}
 	public static void main(String[] argv) {
