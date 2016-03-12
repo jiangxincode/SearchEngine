@@ -52,7 +52,7 @@
 	<div class="header" id="header">
 		<a href="index.jsp"><img src="Images/Search.jpg" alt="找找看"
 			width="900" height="120" align="middle" /></a> <br /> <br />
-		<hr align="center" height="100px" />
+		<hr align="center" size="100px" />
 		<form id="fmSearch" method="post" action="index.jsp">
 			<input type="text" name="keyWord" class="inputText"
 				value="<%=keyword %>" />&nbsp; <input type="submit" value="搜索"
@@ -98,7 +98,7 @@
 		<%} %>
 	</div>
 	<div id="copyright">
-		版权所有 JiangXin Copyright &copy 2014 All Rights Reserved <br /> <a
+		版权所有 JiangXin Copyright © 2014 All Rights Reserved <br /> <a
 			href="mailto:jiangxinnju@163.com">联系我们</a>
 	</div>
 </body>
