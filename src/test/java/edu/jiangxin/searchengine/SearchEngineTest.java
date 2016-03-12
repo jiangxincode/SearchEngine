@@ -8,8 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.jiangxin.searchengine.constant.Constant;
-import edu.jiangxin.searchengine.crawler.MyCrawler;
-import edu.jiangxin.searchengine.crawler.MyCrawler.Crawling;
+import edu.jiangxin.searchengine.crawler.Crawler;
 import edu.jiangxin.searchengine.createindex.MyCreateIndex;
 import edu.jiangxin.searchengine.html2test.MyHtmlToTest;
 import edu.jiangxin.searchengine.split.MySpilt;
@@ -49,11 +48,9 @@ public class SearchEngineTest {
 
 		long start = 0, end = 0;
 		start = System.currentTimeMillis();
-		//new MyCrawler(new String[] { "http://news.nju.edu.cn/index.html" },Integer.valueOf(args[0]));
-		new MyCrawler(new String[] { "http://news.nju.edu.cn/index.html" }, Integer.valueOf(10));
 		ExecutorService executors = Executors.newFixedThreadPool(Constant.DEFAULT_NUM_OF_THREAD);
 		for (int i = 0; i < Constant.DEFAULT_NUM_OF_THREAD; i++) {
-			executors.execute(new Crawling());
+			executors.execute(new Crawler(new String[] { "http://news.nju.edu.cn/index.html" }));
 		}
 		executors.shutdown();
 

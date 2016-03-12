@@ -1,7 +1,3 @@
-/**
- * 描述：主要数据结构的类定义
- * 作者：蒋鑫
- **/
 package edu.jiangxin.searchengine.crawler;
 
 import java.util.HashSet;
@@ -12,9 +8,19 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ *
+ * @author jiangxin
+ *
+ */
 public class LinkQueue {
+
+	/** a lock against competition error. */
 	private static Lock lock = new ReentrantLock();
+
+
 	private static Condition isEmpty = lock.newCondition();
+
 	// 已访问的 url 集合，之所以设为Set，是要保证其所包含的元素不重复
 	private static Set<String> visitedUrl = new HashSet<String>();
 	// 待访问的 url 集合
@@ -33,7 +39,10 @@ public class LinkQueue {
 		visitedUrl.remove(url);
 	}
 
-	// 获得已经访问的URL数目
+	/**
+	 * get the number that has been visited.
+	 * @return The number that has been visited.
+	 */
 	public static synchronized int getVisitedUrlNum() {
 		return visitedUrl.size();
 	}
