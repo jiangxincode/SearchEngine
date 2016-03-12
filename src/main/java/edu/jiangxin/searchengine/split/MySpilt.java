@@ -27,14 +27,12 @@ public class MySpilt {
 
 	public void segmentDir(String source, String target) {
 		File[] file = new File(source).listFiles();
-		if(file == null)
-		{
+		if (file == null) {
 			return;
 		}
 		for (int i = 0; i < file.length; ++i) {
 			if (file[i].isFile()) {
-				segmentFile(file[i].getAbsolutePath(), target + File.separator
-						+ file[i].getName());
+				segmentFile(file[i].getAbsolutePath(), target + File.separator + file[i].getName());
 			}
 			if (file[i].isDirectory()) {
 				String _sourceDir = source + File.separator + file[i].getName();
@@ -71,7 +69,7 @@ public class MySpilt {
 			e1.printStackTrace();
 		}
 
-		IKSegmenter iksegmentation = new IKSegmenter(filereader,true);
+		IKSegmenter iksegmentation = new IKSegmenter(filereader, true);
 		try {
 			while ((lexeme = iksegmentation.next()) != null) {
 				filewriter.write(lexeme.getLexemeText());
@@ -80,7 +78,7 @@ public class MySpilt {
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		} finally {
-			if(filewriter != null) {
+			if (filewriter != null) {
 				try {
 					filewriter.close();
 				} catch (IOException e) {
@@ -90,11 +88,6 @@ public class MySpilt {
 			}
 		}
 
-
 		System.out.println("成功对" + srcfilename + "进行分词");
-	}
-	public static void main(String[] argv) {
-		MySpilt myIK_Tokenize = new MySpilt("target/srcDoc/", "target/wordDoc/");
-		myIK_Tokenize.segment();
 	}
 }

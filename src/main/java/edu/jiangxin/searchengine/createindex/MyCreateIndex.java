@@ -37,8 +37,9 @@ public class MyCreateIndex {
 						Integer integer = (Integer) hashMap.get(wordArray[j]);
 						int value = integer.intValue() + 1;
 						hashMap.put(wordArray[j], new Integer(value));
-					} else
+					} else {
 						hashMap.put(wordArray[j], new Integer(1));
+					}
 				}
 				// 获得标题
 				String title_origin = ReadAndWrite.readFileByChars("target/titleDoc/" + fileName, "UTF-8");
@@ -48,16 +49,18 @@ public class MyCreateIndex {
 					String title = title_origin;
 					String fullContent = fullContent_origin;
 					String partContent = "";
-					int wordStart = fullContent.indexOf(str);// 包含词的位置
+					int wordStart = fullContent.indexOf(str); // 包含词的位置
 					while (wordStart > 0) {
 						String strTmp;
 						int s = 0, e = fullContent.length();
-						if (wordStart > 10)
+						if (wordStart > 10) {
 							s = wordStart - 10;
-						else
+						} else {
 							s = 0;
-						if (e > (wordStart + 10))
+						}
+						if (e > (wordStart + 10)) {
 							e = wordStart + 10;
+						}
 						strTmp = fullContent.substring(s, e);
 						// partContent.append(fullContent.substring(s,
 						// e)).append("......");
@@ -67,12 +70,14 @@ public class MyCreateIndex {
 					}
 					// 形成倒排索引
 					String tmp = fileName + "#split#" + title + "#split#" + partContent + "#split#" + hashMap.get(str);
-					if (hashResult.keySet().contains(str)) {// 包含该词
+					if (hashResult.keySet().contains(str)) {
+						// 包含该词
 						String value = (String) hashResult.get(str);
 						value += ("#next#" + tmp);
 						hashResult.put(str, value);
-					} else
+					} else {
 						hashResult.put(str, tmp);
+					}
 				}
 
 			}
@@ -87,7 +92,7 @@ public class MyCreateIndex {
 			start = System.currentTimeMillis();
 			for (String str : hashResult.keySet()) {
 				StringBuilder tmp = new StringBuilder(str).append("  ").append(hashResult.get(str));
-				// String tmp = str + "  " + hashResult.get(str); // 两个空格
+				// String tmp = str + " " + hashResult.get(str); // 两个空格
 				value.append(tmp).append("#LINE#");
 				// value += (tmp + "#LINE#");
 
@@ -122,11 +127,6 @@ public class MyCreateIndex {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-	}
-
-	public static void main(String[] args) {
-		new MyCreateIndex();
 
 	}
 

@@ -23,8 +23,9 @@ public class LinkQueue {
 	// 添加到访问过的URL队列中
 	public static synchronized void addVisitedUrl(String url) {
 		visitedUrl.add(url);
-		System.out.println("现在visitedUrl集合中共有：" + LinkQueue.getVisitedUrlNum()
-				+ "个元素"); // not very bad
+		System.out.println("现在visitedUrl集合中共有：" + LinkQueue.getVisitedUrlNum() + "个元素"); // not
+																							// very
+																							// bad
 	}
 
 	// 移除访问过的URL
@@ -53,9 +54,9 @@ public class LinkQueue {
 				isEmpty.await();
 				System.out.println("我已经解除阻塞");
 			}
-				visitUrl = unVisitedUrl.poll();
-				System.out.println(visitUrl + "离开unVisitedUrl队列"); // bad
-			
+			visitUrl = unVisitedUrl.poll();
+			System.out.println(visitUrl + "离开unVisitedUrl队列"); // bad
+
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {
@@ -69,13 +70,12 @@ public class LinkQueue {
 	public static void addUnvisitedUrl(String url) {
 		lock.lock();
 		try {
-			if (url != null && !url.trim().equals("")
-					&& !visitedUrl.contains(url) && !unVisitedUrl.contains(url)) {
+			if (url != null && !url.trim().equals("") && !visitedUrl.contains(url) && !unVisitedUrl.contains(url)) {
 				unVisitedUrl.add(url);
 				System.out.println(url + "进入unVisitedUrl队列"); // not very bad
-				System.out.println("现在unVisitedUrl队列中共有:"
-						+ LinkQueue.getUnVisitedUrlNum() + "个元素"); // not very
-																	// bad
+				System.out.println("现在unVisitedUrl队列中共有:" + LinkQueue.getUnVisitedUrlNum() + "个元素"); // not
+																										// very
+																										// bad
 				isEmpty.signalAll();
 			}
 		} finally {

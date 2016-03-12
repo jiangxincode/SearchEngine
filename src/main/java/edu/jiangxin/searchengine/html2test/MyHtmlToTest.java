@@ -33,11 +33,13 @@ public class MyHtmlToTest {
 				// 抓取标题
 				String titleResult = content.toString();
 				int titleStart = titleResult.indexOf("<div class=\"article_title\">");
-				if (titleStart > 0)
+				if (titleStart > 0) {
 					titleResult = titleResult.substring(titleStart);
+				}
 				int titleEnd = titleResult.indexOf("</div>");
-				if (titleEnd > 0)
+				if (titleEnd > 0) {
 					titleResult = titleResult.substring(0, titleEnd);
+				}
 				titleResult = this.DealHtml(titleResult);
 				ReadAndWrite.writeFileByChars("target/titleDoc/" + fileName + ".txt", titleResult);
 				System.out.println("已经成功对" + fileName + "进行解析");
@@ -60,10 +62,5 @@ public class MyHtmlToTest {
 		str = str.replaceAll("<script[\\s\\s]+</script *>", "");
 		str = str.replaceAll("\\s", "");
 		return str;
-	}
-
-	public static void main(String[] args) throws IOException {
-		new MyHtmlToTest();
-
 	}
 }

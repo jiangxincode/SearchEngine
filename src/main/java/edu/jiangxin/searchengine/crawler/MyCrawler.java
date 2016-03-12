@@ -5,15 +5,13 @@
 package edu.jiangxin.searchengine.crawler;
 
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+
+import edu.jiangxin.searchengine.constant.Constant;
 
 public class MyCrawler {
-	static int MAXNUM = 100; // the max amount of the web pages that crawled.
-	final static int MAXTHREADNUM = 10;
+	static int pageNumNeedToCrawler = Constant.DEFAULT_PAGE_NUM_NEED_TO_CRAWLER;
 	static int downloadFileNum = 0;
-	final int MAXSEEDSNUM = 10; // the max amount of the seeds.
-	String[] seeds = new String[MAXSEEDSNUM];
+	String[] seeds = new String[Constant.MAX_SEEDS_NUM];
 
 	public MyCrawler() {
 	}
@@ -22,7 +20,7 @@ public class MyCrawler {
 		for (int i = 0; i < seeds.length; i++) {
 			LinkQueue.addUnvisitedUrl(seeds[i]);
 		}
-		MAXNUM = numOfCrawl;
+		pageNumNeedToCrawler = numOfCrawl;
 	}
 
 	public static class Crawling implements Runnable {
@@ -33,19 +31,18 @@ public class MyCrawler {
 			LinkFilter filter = new LinkFilter() {
 				public boolean accept(String url) {
 					if (url.startsWith("http://news.nju.edu.cn")
-							&& (url.endsWith(".html") || (url
-									.contains("show_article") && !url
-									.contains("#"))))
+							&& (url.endsWith(".html") || (url.contains("show_article") && !url.contains("#")))) {
 						return true;
-					else
+					} else {
 						return false;
+					}
 				}
 			};
 
 			// 循环条件：待抓取的链接不空且抓取的网页不多于1000
 			// while (!LinkQueue.unVisitedUrlsEmpty() && downloadFileNum <
 			// MAXNUM) {
-			while (downloadFileNum < MAXNUM) {
+			while (downloadFileNum < pageNumNeedToCrawler) {
 				if (!LinkQueue.unVisitedUrlsEmpty()) {
 					// 队头URL出队列
 					String visitUrl = (String) LinkQueue.unVisitedUrlDeQueue();
@@ -56,8 +53,8 @@ public class MyCrawler {
 						downloadFileNum++;
 					}
 					LinkQueue.addVisitedUrl(visitUrl); // 该 url 放入到已访问的 URL 中
-					Set<String> links = HtmlParserTool.extracLinks(visitUrl,
-							filter); // 提取出下载网页中的 URL
+					Set<String> links = HtmlParserTool.extracLinks(visitUrl, filter); // 提取出下载网页中的
+																						// URL
 					// 新的未访问的 URL 入队
 					for (String link : links) {
 						LinkQueue.addUnvisitedUrl(link);
@@ -66,23 +63,5 @@ public class MyCrawler {
 			}
 		}
 
-	}
-
-	public static void main(String[] args) {
-		long start = 0, end = 0;
-		start = System.currentTimeMillis();
-		//new MyCrawler(new String[] { "http://news.nju.edu.cn/index.html" },Integer.valueOf(args[0]));
-		new MyCrawler(new String[] { "http://news.nju.edu.cn/index.html" },Integer.valueOf(100));
-		ExecutorService executors = Executors.newFixedThreadPool(10);
-		for (int i = 0; i < MAXTHREADNUM; i++) {
-			executors.execute(new Crawling());
-		}
-		executors.shutdown();
-
-		while (!executors.isTerminated())
-			;
-
-		end = System.currentTimeMillis();
-		System.out.println("爬虫程序共花费时间：" + (end - start));
 	}
 }

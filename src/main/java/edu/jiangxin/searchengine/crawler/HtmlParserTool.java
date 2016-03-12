@@ -23,11 +23,11 @@ public class HtmlParserTool {
 		Set<String> links = new HashSet<String>();
 		try {
 			Parser parser = new Parser(url);
-			//parser.setEncoding("utf8");
+			// parser.setEncoding("utf8");
 			// 过滤 <frame >标签的 filter，用来提取 frame 标签里的 src 属性所表示的链接
 			NodeFilter frameFilter = new NodeFilter() {
 				/**
-				 * 
+				 *
 				 */
 				private static final long serialVersionUID = 1L;
 
@@ -45,25 +45,27 @@ public class HtmlParserTool {
 			NodeList list = parser.extractAllNodesThatMatch(linkFilter);
 			for (int i = 0; i < list.size(); i++) {
 				Node tag = list.elementAt(i);
-				if (tag instanceof LinkTag)// <a> 标签
-				{
+				if (tag instanceof LinkTag) {
+					// <a> 标签
 					LinkTag link = (LinkTag) tag;
-					String linkUrl = link.getLink(); //url可能出现在src,href等属性中
-					if (filter.accept(linkUrl))
+					String linkUrl = link.getLink(); // url可能出现在src,href等属性中
+					if (filter.accept(linkUrl)) {
 						links.add(linkUrl);
-				} else// <frame> 标签
-				{
+					}
+				} else {
+					// <frame> 标签
 					// 提取 frame 里 src 属性的链接如 <frame src="test.html"/>
 					String frame = tag.getText();
 					int start = frame.indexOf("src=\"");
 					frame = frame.substring(start);
 					int end = frame.indexOf("\">");
-					if(end == -1) {
+					if (end == -1) {
 						end = frame.indexOf("?");
 					}
 					String frameUrl = frame.substring(5, end - 1);
-					if (filter.accept(frameUrl))
+					if (filter.accept(frameUrl)) {
 						links.add(frameUrl);
+					}
 				}
 			}
 		} catch (ParserException e) {

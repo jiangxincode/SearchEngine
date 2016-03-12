@@ -16,8 +16,8 @@ public class ReadAndWrite {
 		try {
 			String s = null;
 			StringBuilder result = new StringBuilder();
-			BufferedReader rin = new BufferedReader(new InputStreamReader(
-					new FileInputStream(new File(fileName)), encoding));
+			BufferedReader rin = new BufferedReader(
+					new InputStreamReader(new FileInputStream(new File(fileName)), encoding));
 			while ((s = rin.readLine()) != null) {
 				result.append(s);
 			}
@@ -41,15 +41,14 @@ public class ReadAndWrite {
 		FileChannel fileChannel = null;
 		try {
 			File file = new File(fileName);
-			if(!file.getParentFile().exists())
-			{
+			if (!file.getParentFile().exists()) {
 				file.getParentFile().mkdirs();
 			}
 			FileOutputStream fos = new FileOutputStream(fileName);
 			fileChannel = fos.getChannel();
-			FileLock fileLock = fileChannel.tryLock(); //加锁
+			FileLock fileLock = fileChannel.tryLock(); // 加锁
 			fileChannel.write(byteBuffer);
-			fileLock.release(); //解锁
+			fileLock.release(); // 解锁
 			fileChannel.close();
 			fos.close();
 

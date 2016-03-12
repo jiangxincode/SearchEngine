@@ -1,7 +1,3 @@
-/**
- * 描述：根据URL下载网页到本地
- * 作者：蒋鑫
-**/
 package edu.jiangxin.searchengine.crawler;
 
 import java.io.BufferedInputStream;
@@ -11,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
@@ -22,16 +19,22 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.protocol.HttpContext;
 
+import edu.jiangxin.searchengine.constant.Constant;
+
+/**
+ * 描述：根据URL下载网页到本地. 作者：蒋鑫
+ **/
 public class DownLoadFile {
-	
-	//根据 url 和网页类型生成需要保存的网页的文件名 去除掉 url 中非文件名字符
-	public  String getFileNameByUrl(String url) {
-		url=url.substring(7); //remove http://
-		url= url.replaceAll("[\\?/:*|<>\"]", "_"); //将特殊字符替换，以生成合法的本地文件名
+
+	// 根据 url 和网页类型生成需要保存的网页的文件名 去除掉 url 中非文件名字符
+	public String getFileNameByUrl(String url) {
+		StringUtils.removeStartIgnoreCase(url, "https://");
+		StringUtils.removeStartIgnoreCase(url, "http://");
+		url = url.replaceAll("[\\?/:*|<>\"]", "_"); // 将特殊字符替换，以生成合法的本地文件名
 		return url;
 	}
 
-	//保存网页字节数组到本地文件 filePath 为要保存的文件的相对地址
+	// 保存网页字节数组到本地文件 filePath 为要保存的文件的相对地址
 	private void saveToLocal(InputStream data, String filePath) {
 		try {
 			File result = new File(filePath);
@@ -39,8 +42,8 @@ public class DownLoadFile {
 			BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(result));
 			BufferedInputStream in = new BufferedInputStream(data);
 			int r;
-			while((r=in.read())!=-1) {
-				out.write((byte)r);
+			while ((r = in.read()) != -1) {
+				out.write((byte) r);
 			}
 			in.close();
 			out.close();
@@ -49,40 +52,36 @@ public class DownLoadFile {
 		}
 	}
 
-	//下载 url 指向的网页 
+	// 下载 url 指向的网页
 	public String downloadFile(String url) {
-		
+
 		String filePath = null;
-		HttpRequestRetryHandler myRetryHandler =  new HttpRequestRetryHandler() {
+		HttpRequestRetryHandler myRetryHandler = new HttpRequestRetryHandler() {
 
 			@Override
-			public boolean retryRequest(IOException arg0, int executionCount,
-					HttpContext arg2) {
-				if(executionCount > 5) { //最多重试5次
+			public boolean retryRequest(IOException arg0, int executionCount, HttpContext arg2) {
+				if (executionCount > 5) { // 最多重试5次
 					return false;
 				}
 				return false;
 			}
 		};
-		CloseableHttpClient httpClient = HttpClients.custom()
-				.setRetryHandler(myRetryHandler)
-				.build(); //生成 HttpClinet
-		RequestConfig requestConfig = RequestConfig.custom()
-				.setConnectTimeout(5000)
-				.setConnectionRequestTimeout(5000)
-				.build();
+		CloseableHttpClient httpClient = HttpClients.custom().setRetryHandler(myRetryHandler).build(); // 生成
+																										// HttpClinet
+		RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(Constant.DEFAULT_CONNECT_TIMEOUT)
+				.setConnectionRequestTimeout(Constant.DEFAULT_CONNECTION_REQUEST_TIMEOUT).build();
 		HttpGet httpGet = new HttpGet(url);
 		httpGet.setConfig(requestConfig);
 		CloseableHttpResponse response;
 		try {
 			response = httpClient.execute(httpGet);
 			StatusLine statusLine = response.getStatusLine();
-			if(statusLine.getStatusCode()!=HttpStatus.SC_OK) {
+			if (statusLine.getStatusCode() != HttpStatus.SC_OK) {
 				System.err.println("Method failed: " + statusLine);
 				filePath = null;
 			}
 			HttpEntity entity = response.getEntity();
-			if(entity != null) { //处理流内容
+			if (entity != null) { // 处理流内容
 				InputStream entityContent = entity.getContent();
 				filePath = "target/html/" + getFileNameByUrl(url);
 				saveToLocal(entityContent, filePath);
@@ -90,7 +89,7 @@ public class DownLoadFile {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("成功下载文件" + filePath + "到本地"); //not very bad
+		System.out.println("成功下载文件" + filePath + "到本地"); // not very bad
 		return filePath;
 	}
 

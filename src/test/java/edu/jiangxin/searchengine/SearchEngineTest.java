@@ -7,6 +7,7 @@ import java.util.concurrent.Executors;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.jiangxin.searchengine.constant.Constant;
 import edu.jiangxin.searchengine.crawler.MyCrawler;
 import edu.jiangxin.searchengine.crawler.MyCrawler.Crawling;
 import edu.jiangxin.searchengine.createindex.MyCreateIndex;
@@ -15,7 +16,6 @@ import edu.jiangxin.searchengine.split.MySpilt;
 import edu.jiangxin.searchengine.utils.DeleteDirectory;
 
 public class SearchEngineTest {
-	final static int MAXTHREADNUM = 10;
 
 	static boolean isDeleteDir = false;
 	static String[] forCrawler;
@@ -27,22 +27,23 @@ public class SearchEngineTest {
 
 	@Test
 	public void testSearchEngine() {
-		String [] argv = {"-n", "10", "-deleteDir"};
-		for(int i=0;i<argv.length;i++) {
+		String[] argv = { "-n", "10", "-deleteDir" };
+		for (int i = 0; i < argv.length; i++) {
 			//System.out.println(i); //bad
 			String temp = argv[i].substring(1);
 			System.out.println(temp);
-			if(temp.equalsIgnoreCase("deleteDir")) { //-deleteDir
+			if (temp.equalsIgnoreCase("deleteDir")) { //-deleteDir
 				isDeleteDir = true;
 				continue;
 			}
-			if(temp.equals("n")) { //-n 50
-				forCrawler = new String[]{argv[++i]};
+			if (temp.equals("n")) { //-n 50
+				forCrawler = new String[] { argv[++i] };
 				//System.out.println(i);
 			}
 		}
-		if(isDeleteDir == true) {
-			String[] deleteDirs = new String[]{"target/html/","target/srcDoc/","target/titleDoc/","target/wordDoc/","src/main/webapp/index.txt"};
+		if (isDeleteDir == true) {
+			String[] deleteDirs = new String[] { "target/html/", "target/srcDoc/", "target/titleDoc/",
+					"target/wordDoc/", "src/main/webapp/index.txt" };
 			DeleteDirectory.deleteDirs(deleteDirs);
 		}
 
@@ -50,14 +51,15 @@ public class SearchEngineTest {
 		start = System.currentTimeMillis();
 		//new MyCrawler(new String[] { "http://news.nju.edu.cn/index.html" },Integer.valueOf(args[0]));
 		new MyCrawler(new String[] { "http://news.nju.edu.cn/index.html" }, Integer.valueOf(10));
-		ExecutorService executors = Executors.newFixedThreadPool(10);
-		for (int i = 0; i < MAXTHREADNUM; i++) {
+		ExecutorService executors = Executors.newFixedThreadPool(Constant.DEFAULT_NUM_OF_THREAD);
+		for (int i = 0; i < Constant.DEFAULT_NUM_OF_THREAD; i++) {
 			executors.execute(new Crawling());
 		}
 		executors.shutdown();
 
-		while (!executors.isTerminated())
-			;
+		while (!executors.isTerminated()) {
+			continue;
+		}
 
 		end = System.currentTimeMillis();
 		System.out.println("爬虫程序共花费时间：" + (end - start));
