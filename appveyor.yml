@@ -1,7 +1,6 @@
 ##
 ## Build with appveyor
 ##
-## https://ci.appveyor.com/project/thomasWeise/utils-base
 #
 environment:
   matrix:
