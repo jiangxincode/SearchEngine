@@ -12,8 +12,8 @@ import java.io.InputStreamReader;
 
 import edu.jiangxin.searchengine.utils.ReadAndWrite;
 
-public class MyHtmlToTest {
-	public MyHtmlToTest() throws IOException {
+public class Html2Text {
+	public Html2Text() throws IOException {
 		File directory = new File("target/html");
 		File[] fileList = directory.listFiles();
 		if (fileList != null) {

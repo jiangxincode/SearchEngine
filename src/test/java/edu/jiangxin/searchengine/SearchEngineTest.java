@@ -1,18 +1,19 @@
 package edu.jiangxin.searchengine;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
 
 import edu.jiangxin.searchengine.constant.Constant;
 import edu.jiangxin.searchengine.crawler.Crawler;
-import edu.jiangxin.searchengine.createindex.MyCreateIndex;
-import edu.jiangxin.searchengine.html2test.MyHtmlToTest;
-import edu.jiangxin.searchengine.split.MySpilt;
-import edu.jiangxin.searchengine.utils.DeleteDirectory;
+import edu.jiangxin.searchengine.createindex.CreateIndex;
+import edu.jiangxin.searchengine.html2test.Html2Text;
+import edu.jiangxin.searchengine.split.Spilt;
 
 public class SearchEngineTest {
 
@@ -40,10 +41,17 @@ public class SearchEngineTest {
 				//System.out.println(i);
 			}
 		}
-		if (isDeleteDir == true) {
+		if (isDeleteDir) {
 			String[] deleteDirs = new String[] { "target/html/", "target/srcDoc/", "target/titleDoc/",
 					"target/wordDoc/", "src/main/webapp/index.txt" };
-			DeleteDirectory.deleteDirs(deleteDirs);
+			for (String dirName : deleteDirs) {
+				try {
+					FileUtils.deleteDirectory(new File(dirName));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 
 		long start = 0, end = 0;
@@ -62,16 +70,16 @@ public class SearchEngineTest {
 		System.out.println("爬虫程序共花费时间：" + (end - start));
 
 		try {
-			new MyHtmlToTest();
+			new Html2Text();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		MySpilt myIK_Tokenize = new MySpilt("target/srcDoc/", "target/wordDoc/");
+		Spilt myIK_Tokenize = new Spilt("target/srcDoc/", "target/wordDoc/");
 		myIK_Tokenize.segment();
 
-		new MyCreateIndex();
+		new CreateIndex();
 
 	}
 

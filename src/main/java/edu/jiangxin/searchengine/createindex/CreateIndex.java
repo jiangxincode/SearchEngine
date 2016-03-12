@@ -14,11 +14,11 @@ import java.util.HashMap;
 
 import edu.jiangxin.searchengine.utils.ReadAndWrite;
 
-public class MyCreateIndex {
+public class CreateIndex {
 	long start, end;
 	long temp = 0;
 
-	public MyCreateIndex() {
+	public CreateIndex() {
 		HashMap<String, String> hashResult = new HashMap<String, String>();
 		File dirFile = new File("target/wordDoc");
 		File[] fileList = dirFile.listFiles();

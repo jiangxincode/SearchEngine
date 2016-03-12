@@ -12,11 +12,11 @@ import java.io.IOException;
 
 import org.wltea.analyzer.core.*;
 
-public class MySpilt {
+public class Spilt {
 	private String sourceDir;
 	private String targetDir;
 
-	public MySpilt(String source, String target) {
+	public Spilt(String source, String target) {
 		this.sourceDir = source;
 		this.targetDir = target;
 	}

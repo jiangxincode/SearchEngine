@@ -6,7 +6,7 @@ public class GetPath {
 
 	/**
 	 * 获取maven项目的Main资源文件路径（不含包名，以分隔符结尾）.
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getMainResourcePath() {
@@ -15,7 +15,7 @@ public class GetPath {
 
 	/**
 	 * 获取maven项目的Test资源文件路径（不含包名，以分隔符结尾）.
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getTestResourcePath() {
@@ -24,10 +24,10 @@ public class GetPath {
 
 	/**
 	 * 获取maven项目的Main资源文件路径（含包名，以分隔符结尾）.
-	 * 
+	 *
 	 * @return
 	 */
-	public static String getMainResourcePathWithPackage(Object obj) {
+	public static String getMainResourcePathWithPackage(final Object obj) {
 
 		String result = "target" + File.separator + "classes" + File.separator;
 
@@ -44,7 +44,7 @@ public class GetPath {
 
 	/**
 	 * 获取maven项目的Test资源文件路径（含包名，以分隔符结尾）.
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getTestResourcePathWithPackage(Object obj) {
