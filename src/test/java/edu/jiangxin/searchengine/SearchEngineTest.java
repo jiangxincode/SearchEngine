@@ -15,42 +15,36 @@ import edu.jiangxin.searchengine.createindex.CreateIndex;
 import edu.jiangxin.searchengine.html2test.Html2Text;
 import edu.jiangxin.searchengine.split.Spilt;
 
+/**
+ * test the main function of SearchEngine.
+ *
+ * @author jiangxin
+ *
+ */
 public class SearchEngineTest {
 
-	static boolean isDeleteDir = false;
-	static String[] forCrawler;
-	static int tempCrawler = 0;
-
+	/**
+	 *
+	 */
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 	}
 
+	/**
+	 * @throws IOException IOException
+	 *
+	 */
 	@Test
-	public void testSearchEngine() {
-		String[] argv = { "-n", "10", "-deleteDir" };
-		for (int i = 0; i < argv.length; i++) {
-			//System.out.println(i); //bad
-			String temp = argv[i].substring(1);
-			System.out.println(temp);
-			if (temp.equalsIgnoreCase("deleteDir")) { //-deleteDir
-				isDeleteDir = true;
-				continue;
-			}
-			if (temp.equals("n")) { //-n 50
-				forCrawler = new String[] { argv[++i] };
-				//System.out.println(i);
-			}
-		}
-		if (isDeleteDir) {
-			String[] deleteDirs = new String[] { "target/html/", "target/srcDoc/", "target/titleDoc/",
-					"target/wordDoc/", "src/main/webapp/index.txt" };
-			for (String dirName : deleteDirs) {
-				try {
-					FileUtils.deleteDirectory(new File(dirName));
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+	public final void testSearchEngine() throws IOException {
+
+		String[] deleteDirs = new String[] { "target/html/", "target/srcDoc/", "target/titleDoc/", "target/wordDoc/",
+				"src/main/webapp/index.txt" };
+		for (String dirName : deleteDirs) {
+			try {
+				FileUtils.deleteDirectory(new File(dirName));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 
@@ -76,8 +70,8 @@ public class SearchEngineTest {
 			e.printStackTrace();
 		}
 
-		Spilt myIK_Tokenize = new Spilt("target/srcDoc/", "target/wordDoc/");
-		myIK_Tokenize.segment();
+		Spilt spilt = new Spilt("target/srcDoc/", "target/wordDoc/");
+		spilt.segment();
 
 		new CreateIndex();
 

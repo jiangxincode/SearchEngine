@@ -32,11 +32,7 @@ public class HtmlParserTool {
 				private static final long serialVersionUID = 1L;
 
 				public boolean accept(Node node) {
-					if (node.getText().startsWith("iframe") && node.getText().contains("src=")) {
-						return true;
-					} else {
-						return false;
-					}
+					return node.getText().startsWith("iframe") && node.getText().contains("src=");
 				}
 			};
 			// OrFilter 来设置过滤 <a> 标签和 <frame> 标签

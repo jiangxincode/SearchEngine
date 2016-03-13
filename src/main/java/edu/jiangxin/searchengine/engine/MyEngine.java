@@ -200,7 +200,7 @@ public class MyEngine {
 					}
 
 					// 合并相同出处内容的词频
-					this.ResultMerger(modList);
+					this.resultMerger(modList);
 					// 将结果按照词频排序
 					Collections.sort(modList, new SortByWordNum());
 				}
@@ -217,7 +217,7 @@ public class MyEngine {
 	}
 
 	// 合并相同出处内容的词频
-	private void ResultMerger(ArrayList<ResultModel> modList) {
+	private void resultMerger(ArrayList<ResultModel> modList) {
 		for (int i = 0; i < modList.size(); i++) {
 			for (int j = i + 1; j < modList.size(); j++) {
 				if (modList.get(i) != null && modList.get(j) != null) {
@@ -231,7 +231,7 @@ public class MyEngine {
 	}
 
 	// 对关键词高亮显示
-	public String HighLightKey(String content) {
+	public final String highLightKey(String content) {
 		content = content.replaceAll(" ", "");
 		for (String word : this.vecKey) {
 			content = content.replaceAll(word, "<font style='color:#ff0000;font-weight:bold;'>" + word + "</font>");
@@ -240,7 +240,7 @@ public class MyEngine {
 		return content.replaceAll("</font>[\\W]*<font style='color:#ff0000;font-weight:bold;'>", "");
 	}
 
-	public static void main(String[] argv) {
+	public static void main(final String[] argv) {
 		MyEngine index = new MyEngine("src/main/java/index.idx");
 		ArrayList<ResultModel> testList = index.getResultSet("中国&美国");
 		for (int i = 0; i < testList.size(); i++) {

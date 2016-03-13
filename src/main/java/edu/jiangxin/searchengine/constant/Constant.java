@@ -18,7 +18,7 @@ public final class Constant {
 	/**
 	 * the default number of thread.
 	 */
-	public static final int DEFAULT_NUM_OF_THREAD = 10;
+	public static final int DEFAULT_NUM_OF_THREAD = 5;
 
 	/**
 	 * the default connect timeout.

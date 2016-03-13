@@ -10,7 +10,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import edu.jiangxin.searchengine.utils.ReadAndWrite;
+import org.apache.commons.io.FileUtils;
 
 public class Html2Text {
 	public Html2Text() throws IOException {
@@ -27,8 +27,8 @@ public class Html2Text {
 					content.append(str);
 				}
 				in.close();
-				String result = this.DealHtml(content); // 抓取内容
-				ReadAndWrite.writeFileByChars("target/srcDoc/" + fileName + ".txt", result);
+				String result = this.dealHtml(content); // 抓取内容
+				FileUtils.writeStringToFile(new File("target/srcDoc/" + fileName + ".txt"), result, "UTF-8");
 
 				// 抓取标题
 				String titleResult = content.toString();
@@ -40,15 +40,15 @@ public class Html2Text {
 				if (titleEnd > 0) {
 					titleResult = titleResult.substring(0, titleEnd);
 				}
-				titleResult = this.DealHtml(titleResult);
-				ReadAndWrite.writeFileByChars("target/titleDoc/" + fileName + ".txt", titleResult);
+				titleResult = this.dealHtml(titleResult);
+				FileUtils.writeStringToFile(new File("target/titleDoc/" + fileName + ".txt"), titleResult, "UTF-8");
 				System.out.println("已经成功对" + fileName + "进行解析");
 			}
 		}
 
 	}
 
-	public String DealHtml(Object o) {
+	public String dealHtml(Object o) {
 		String str = o.toString();
 		str = str.replaceAll("\\<(img)[^>]*>|<\\/(img)>", "");
 		str = str.replaceAll("\\<(table|tbody|tr|td|th|)[^>]*>|<\\/(table|tbody|tr|td|th|)>", "");

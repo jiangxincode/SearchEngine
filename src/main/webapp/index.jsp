@@ -77,11 +77,11 @@
 					ResultModel mod = (ResultModel)o;
 			%>
 		<div class="bobyTitle">
-			<a href="<%=mod.getUrl() %>" target="_blank"> <%= myEngine.HighLightKey(mod.getTitle()) %>
+			<a href="<%=mod.getUrl() %>" target="_blank"> <%= myEngine.highLightKey(mod.getTitle()) %>
 			</a>
 		</div>
 		<div class="bobyContent">
-			<%= myEngine.HighLightKey(mod.getPartContent()) %>
+			<%= myEngine.highLightKey(mod.getPartContent()) %>
 		</div>
 		<div class="bobyUrl">
 			<span style="color: Gray;"><%=mod.getUrl() %></span>&nbsp;&nbsp;

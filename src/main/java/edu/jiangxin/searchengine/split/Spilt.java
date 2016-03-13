@@ -1,7 +1,3 @@
-/**
- * 描述：实现文件的中文分词
- * 作者：蒋鑫
-**/
 package edu.jiangxin.searchengine.split;
 
 import java.io.File;
@@ -10,22 +6,46 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import org.wltea.analyzer.core.*;
+import org.wltea.analyzer.core.IKSegmenter;
+import org.wltea.analyzer.core.Lexeme;
 
+/**
+ * split the sentence into words.
+ *
+ * @author jiangxin
+ *
+ */
 public class Spilt {
+
+	/**  */
 	private String sourceDir;
+
+	/**  */
 	private String targetDir;
 
-	public Spilt(String source, String target) {
+	/**
+	 *
+	 * @param source source directory.
+	 * @param target target directory.
+	 */
+	public Spilt(final String source, final String target) {
 		this.sourceDir = source;
 		this.targetDir = target;
 	}
 
-	public void segment() {
+	/**
+	 *
+	 */
+	public final void segment() {
 		segmentDir(this.sourceDir, this.targetDir);
 	}
 
-	public void segmentDir(String source, String target) {
+	/**
+	 *
+	 * @param source source directory.
+	 * @param target target directory.
+	 */
+	public final void segmentDir(final String source, final String target) {
 		File[] file = new File(source).listFiles();
 		if (file == null) {
 			return;
@@ -35,15 +55,20 @@ public class Spilt {
 				segmentFile(file[i].getAbsolutePath(), target + File.separator + file[i].getName());
 			}
 			if (file[i].isDirectory()) {
-				String _sourceDir = source + File.separator + file[i].getName();
-				String _targetDir = target + File.separator + file[i].getName();
-				new File(_targetDir).mkdirs();
-				segmentDir(_sourceDir, _targetDir);
+				String sourceDirTmp = source + File.separator + file[i].getName();
+				String targetDirTmp = target + File.separator + file[i].getName();
+				new File(targetDirTmp).mkdirs();
+				segmentDir(sourceDirTmp, targetDirTmp);
 			}
 		}
 	}
 
-	public void segmentFile(String srcfilename, String resfilename) {
+	/**
+	 *
+	 * @param srcfilename srcfilename
+	 * @param resfilename resfilename
+	 */
+	public final void segmentFile(final String srcfilename, final String resfilename) {
 		File filetemp = new File(resfilename);
 		filetemp.getParentFile().mkdirs();
 		if (!(filetemp.exists())) {

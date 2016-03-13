@@ -28,8 +28,8 @@ public class DownLoadFile {
 
 	// 根据 url 和网页类型生成需要保存的网页的文件名 去除掉 url 中非文件名字符
 	public String getFileNameByUrl(String url) {
-		StringUtils.removeStartIgnoreCase(url, "https://");
-		StringUtils.removeStartIgnoreCase(url, "http://");
+		url = StringUtils.removeStartIgnoreCase(url, "https://");
+		url = StringUtils.removeStartIgnoreCase(url, "http://");
 		url = url.replaceAll("[\\?/:*|<>\"]", "_"); // 将特殊字符替换，以生成合法的本地文件名
 		return url;
 	}
@@ -59,7 +59,7 @@ public class DownLoadFile {
 		HttpRequestRetryHandler myRetryHandler = new HttpRequestRetryHandler() {
 
 			@Override
-			public boolean retryRequest(IOException arg0, int executionCount, HttpContext arg2) {
+			public boolean retryRequest(final IOException arg0, int executionCount, final HttpContext arg2) {
 				if (executionCount > 5) { // 最多重试5次
 					return false;
 				}

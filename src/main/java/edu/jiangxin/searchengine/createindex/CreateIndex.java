@@ -12,13 +12,13 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.HashMap;
 
-import edu.jiangxin.searchengine.utils.ReadAndWrite;
+import org.apache.commons.io.FileUtils;
 
 public class CreateIndex {
 	long start, end;
 	long temp = 0;
 
-	public CreateIndex() {
+	public CreateIndex() throws IOException {
 		HashMap<String, String> hashResult = new HashMap<String, String>();
 		File dirFile = new File("target/wordDoc");
 		File[] fileList = dirFile.listFiles();
@@ -30,7 +30,7 @@ public class CreateIndex {
 				String fileName = fileList[i].getName();
 				System.out.println("\t现在正在对文件" + fileName + "进行分析");
 				HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
-				String content = ReadAndWrite.readFileByChars("target/wordDoc/" + fileName, "UTF-8");
+				String content = FileUtils.readFileToString(new File("target/wordDoc/" + fileName), "UTF-8");
 				String[] wordArray = content.split(" ");
 				for (int j = 0; j < wordArray.length; j++) {
 					if (hashMap.keySet().contains(wordArray[j])) {
@@ -42,12 +42,12 @@ public class CreateIndex {
 					}
 				}
 				// 获得标题
-				String title_origin = ReadAndWrite.readFileByChars("target/titleDoc/" + fileName, "UTF-8");
+				String titleOrigin = FileUtils.readFileToString(new File("target/titleDoc/" + fileName), "UTF-8");
 				// 获得跟词相关的部分内容
-				String fullContent_origin = ReadAndWrite.readFileByChars("target/srcDoc/" + fileName, "UTF-8");
+				String fullContentOrigin = FileUtils.readFileToString(new File("target/srcDoc/" + fileName), "UTF-8");
 				for (String str : hashMap.keySet()) {
-					String title = title_origin;
-					String fullContent = fullContent_origin;
+					String title = titleOrigin;
+					String fullContent = fullContentOrigin;
 					String partContent = "";
 					int wordStart = fullContent.indexOf(str); // 包含词的位置
 					while (wordStart > 0) {
