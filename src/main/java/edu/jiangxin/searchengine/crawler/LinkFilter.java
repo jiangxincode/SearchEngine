@@ -1,9 +1,15 @@
-/**
- * 描述：LinkFilter接口定义
- * 作者：蒋鑫
-**/
 package edu.jiangxin.searchengine.crawler;
 
+/**
+ *
+ * @author jiangxin
+ *
+ */
 public interface LinkFilter {
-	public boolean accept(String url);
+	/**
+	 *
+	 * @param url url
+	 * @return boolean
+	 */
+	boolean accept(String url);
 }
