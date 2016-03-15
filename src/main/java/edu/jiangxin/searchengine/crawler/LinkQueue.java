@@ -29,9 +29,7 @@ public class LinkQueue {
 	// 添加到访问过的URL队列中
 	public static synchronized void addVisitedUrl(String url) {
 		visitedUrl.add(url);
-		System.out.println("现在visitedUrl集合中共有：" + LinkQueue.getVisitedUrlNum() + "个元素"); // not
-																							// very
-																							// bad
+		System.out.println("现在visitedUrl集合中共有：" + LinkQueue.getVisitedUrlNum() + "个元素");
 	}
 
 	// 移除访问过的URL

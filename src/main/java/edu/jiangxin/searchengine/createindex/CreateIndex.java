@@ -14,9 +14,15 @@ import java.util.HashMap;
 
 import org.apache.commons.io.FileUtils;
 
+import edu.jiangxin.searchengine.constant.Constant;
+
+/**
+ *
+ * @author jiangxin
+ *
+ */
 public class CreateIndex {
 	long start, end;
-	long temp = 0;
 
 	public CreateIndex() throws IOException {
 		HashMap<String, String> hashResult = new HashMap<String, String>();
@@ -53,17 +59,13 @@ public class CreateIndex {
 					while (wordStart > 0) {
 						String strTmp;
 						int s = 0, e = fullContent.length();
-						if (wordStart > 10) {
-							s = wordStart - 10;
-						} else {
-							s = 0;
+						if (wordStart > Constant.DEFAULT_LEN_BEFORE_AFTER_KEYWORD) {
+							s = wordStart - Constant.DEFAULT_LEN_BEFORE_AFTER_KEYWORD;
 						}
-						if (e > (wordStart + 10)) {
-							e = wordStart + 10;
+						if (e > (wordStart + Constant.DEFAULT_LEN_BEFORE_AFTER_KEYWORD)) {
+							e = wordStart + Constant.DEFAULT_LEN_BEFORE_AFTER_KEYWORD;
 						}
 						strTmp = fullContent.substring(s, e);
-						// partContent.append(fullContent.substring(s,
-						// e)).append("......");
 						partContent += (strTmp + "......");
 						fullContent = fullContent.substring(e);
 						wordStart = fullContent.indexOf(str);
@@ -92,9 +94,7 @@ public class CreateIndex {
 			start = System.currentTimeMillis();
 			for (String str : hashResult.keySet()) {
 				StringBuilder tmp = new StringBuilder(str).append("  ").append(hashResult.get(str));
-				// String tmp = str + " " + hashResult.get(str); // 两个空格
 				value.append(tmp).append("#LINE#");
-				// value += (tmp + "#LINE#");
 
 			}
 			end = System.currentTimeMillis();
@@ -109,7 +109,12 @@ public class CreateIndex {
 
 	}
 
-	public void writeFileByChars(String fileName, String value) {
+	/**
+	 *
+	 * @param fileName fileName
+	 * @param value value
+	 */
+	private void writeFileByChars(final String fileName, final String value) {
 		String path = fileName;
 		try {
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, false), "UTF-8"));
@@ -117,8 +122,8 @@ public class CreateIndex {
 			String[] arryStr = value.split("#LINE#");
 			for (int i = 0; i < arryStr.length; i++) {
 				bw.write(arryStr[i]);
-				bw.write(13);
-				bw.write(10);
+				bw.write('\r');
+				bw.write('\n');
 			}
 
 			bw.close();

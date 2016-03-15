@@ -40,4 +40,14 @@ public final class Constant {
 	 */
 	public static final int DEFAULT_PAGE_NUM_NEED_TO_CRAWLER = 10;
 
+	/**
+	 * the default length before and after the key word.
+	 */
+	public static final int DEFAULT_LEN_BEFORE_AFTER_KEYWORD = 10;
+
+	/**
+	 * the maximum number that retry when download.
+	 */
+	public static final int MAX_RETRY_TIMES = 5;
+
 }

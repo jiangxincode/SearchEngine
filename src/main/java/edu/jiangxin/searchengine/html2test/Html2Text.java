@@ -1,7 +1,3 @@
-/**
- * 描述：分析之前抓取的网页，并提取出文本，存储在对应文件中以备用来分词，另外将文章的标题抓下来存入了以新闻编号为名的txt文档中
- * 作者：蒋鑫
-**/
 package edu.jiangxin.searchengine.html2test;
 
 import java.io.BufferedReader;
@@ -12,7 +8,17 @@ import java.io.InputStreamReader;
 
 import org.apache.commons.io.FileUtils;
 
+/**
+ * 分析之前抓取的网页，并提取出文本，存储在对应文件中以备用来分词，另外将文章的标题抓下来存入了以新闻编号为名的txt文档中.
+ * @author jiangxin
+ *
+ */
 public class Html2Text {
+
+	/**
+	 *
+	 * @throws IOException IOException
+	 */
 	public Html2Text() throws IOException {
 		File directory = new File("target/html");
 		File[] fileList = directory.listFiles();
@@ -48,7 +54,12 @@ public class Html2Text {
 
 	}
 
-	public String dealHtml(Object o) {
+	/**
+	 *
+	 * @param o o
+	 * @return String
+	 */
+	public final String dealHtml(final Object o) {
 		String str = o.toString();
 		str = str.replaceAll("\\<(img)[^>]*>|<\\/(img)>", "");
 		str = str.replaceAll("\\<(table|tbody|tr|td|th|)[^>]*>|<\\/(table|tbody|tr|td|th|)>", "");

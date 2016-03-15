@@ -2,7 +2,7 @@
  * 描述：搜索引擎，读取索引文件按照索引上词频来排序显示结果
  * 作者：蒋鑫
  **/
-package edu.jiangxin.searchengine.engine;
+package edu.jiangxin.searchengine.search;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -37,8 +37,10 @@ public class MyEngine {
 		hashWord = new HashMap<String, String>();
 		try {
 			String line = null;
+			File file = new File(indexFile);
+			System.out.println(file.getAbsolutePath());
 			BufferedReader rin = new BufferedReader(
-					new InputStreamReader(new FileInputStream(new File(indexFile)), "UTF-8"));
+					new InputStreamReader(new FileInputStream(file), "UTF-8"));
 			while ((line = rin.readLine()) != null) {
 				String[] array = line.split("  ");
 				hashWord.put(array[0], array[1]); // array[0]keyword,array[1]others
@@ -238,15 +240,5 @@ public class MyEngine {
 		}
 
 		return content.replaceAll("</font>[\\W]*<font style='color:#ff0000;font-weight:bold;'>", "");
-	}
-
-	public static void main(final String[] argv) {
-		MyEngine index = new MyEngine("src/main/java/index.idx");
-		ArrayList<ResultModel> testList = index.getResultSet("中国&美国");
-		for (int i = 0; i < testList.size(); i++) {
-			testList.get(i).printInfo();
-			System.out.println(i);
-		}
-
 	}
 }

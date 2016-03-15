@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ page language="java" import="edu.jiangxin.searchengine.engine.MyEngine"%>
-<%@ page language="java" import="edu.jiangxin.searchengine.engine.ResultModel"%>
+<%@ page language="java" import="edu.jiangxin.searchengine.search.MyEngine"%>
+<%@ page language="java" import="edu.jiangxin.searchengine.search.ResultModel"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	MyEngine myEngine = null;

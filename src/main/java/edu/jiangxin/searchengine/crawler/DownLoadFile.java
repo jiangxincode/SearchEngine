@@ -26,16 +26,24 @@ import edu.jiangxin.searchengine.constant.Constant;
  **/
 public class DownLoadFile {
 
-	// 根据 url 和网页类型生成需要保存的网页的文件名 去除掉 url 中非文件名字符
-	public String getFileNameByUrl(String url) {
-		url = StringUtils.removeStartIgnoreCase(url, "https://");
-		url = StringUtils.removeStartIgnoreCase(url, "http://");
-		url = url.replaceAll("[\\?/:*|<>\"]", "_"); // 将特殊字符替换，以生成合法的本地文件名
-		return url;
+	/**
+	 * 根据 url 和网页类型生成需要保存的网页的文件名 去除掉 url 中非文件名字符.
+	 * @param url url
+	 * @return String
+	 */
+	public final String getFileNameByUrl(final String url) {
+		String result = StringUtils.removeStartIgnoreCase(url, "https://");
+		result = StringUtils.removeStartIgnoreCase(result, "http://");
+		result = result.replaceAll("[\\?/:*|<>\"]", "_"); // 将特殊字符替换，以生成合法的本地文件名
+		return result;
 	}
 
-	// 保存网页字节数组到本地文件 filePath 为要保存的文件的相对地址
-	private void saveToLocal(InputStream data, String filePath) {
+	/**
+	 * 保存网页字节数组到本地文件 filePath 为要保存的文件的相对地址.
+	 * @param data data
+	 * @param filePath filePath
+	 */
+	private void saveToLocal(final InputStream data, final String filePath) {
 		try {
 			File result = new File(filePath);
 			result.getParentFile().mkdirs();
@@ -52,15 +60,19 @@ public class DownLoadFile {
 		}
 	}
 
-	// 下载 url 指向的网页
-	public String downloadFile(String url) {
+	/**
+	 * 下载 url 指向的网页.
+	 * @param url url
+	 * @return String
+	 */
+	public final String downloadFile(final String url) {
 
 		String filePath = null;
 		HttpRequestRetryHandler myRetryHandler = new HttpRequestRetryHandler() {
 
 			@Override
-			public boolean retryRequest(final IOException arg0, int executionCount, final HttpContext arg2) {
-				if (executionCount > 5) { // 最多重试5次
+			public boolean retryRequest(final IOException arg0, final int executionCount, final HttpContext arg2) {
+				if (executionCount > Constant.MAX_RETRY_TIMES) {
 					return false;
 				}
 				return false;
