@@ -81,7 +81,7 @@ public class Spilt {
 
 		FileReader filereader = null;
 		FileWriter filewriter = null;
-		Lexeme lexeme = null;
+		Lexeme lexeme;
 		try {
 			filereader = new FileReader(srcfilename);
 		} catch (FileNotFoundException e0) {

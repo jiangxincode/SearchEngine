@@ -26,7 +26,7 @@ public class Html2Text {
 			for (int i = 0; i < fileList.length; i++) {
 				String fileName = fileList[i].getName();
 				StringBuilder content = new StringBuilder();
-				String str = new String();
+				String str;
 				BufferedReader in = new BufferedReader(
 						new InputStreamReader(new FileInputStream(fileList[i]), "UTF-8"));
 				while ((str = in.readLine()) != null) {

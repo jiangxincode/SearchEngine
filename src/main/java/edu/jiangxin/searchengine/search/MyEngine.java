@@ -57,7 +57,7 @@ public class MyEngine {
 		long begin = System.currentTimeMillis();
 		hashWord = new HashMap<String, String>();
 		try {
-			String line = null;
+			String line;
 			File file = new File(indexFile);
 			System.out.println(file.getAbsolutePath());
 			BufferedReader rin = new BufferedReader(
@@ -95,7 +95,7 @@ public class MyEngine {
 			ArrayList<ResultModel> modListAfter = new ArrayList<ResultModel>();
 			if (this.hashWord.size() > 0) {
 				long begin = System.currentTimeMillis();
-				ResultModel[] modArray = null;
+				ResultModel[] modArray;
 				String resultBefore = this.hashWord.get(keyBefore);
 				String resultAfter = this.hashWord.get(keyAfter);
 				String[] array = resultBefore.split("#next#"); // 得到存在该关键字的所有文本文件信息
@@ -149,7 +149,7 @@ public class MyEngine {
 			ArrayList<ResultModel> modListAfter = new ArrayList<ResultModel>();
 			if (this.hashWord.size() > 0) {
 				long begin = System.currentTimeMillis();
-				ResultModel[] modArray = null;
+				ResultModel[] modArray;
 				String resultBefore = this.hashWord.get(keyBefore);
 				String resultAfter = this.hashWord.get(keyAfter);
 				String[] array = resultBefore.split("#next#"); // 得到存在该关键字的所有文本文件信息
@@ -200,7 +200,7 @@ public class MyEngine {
 			ResultModel[] modArray = null;
 			// 对关键字分词
 			IKSegmenter iksegmentation = new IKSegmenter(new StringReader(key), true);
-			Lexeme lexeme = null;
+			Lexeme lexeme;
 			try {
 				while ((lexeme = iksegmentation.next()) != null) {
 					System.out.println(lexeme.getLexemeText());
