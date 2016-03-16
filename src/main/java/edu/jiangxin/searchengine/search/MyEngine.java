@@ -1,7 +1,3 @@
-/**
- * 描述：搜索引擎，读取索引文件按照索引上词频来排序显示结果
- * 作者：蒋鑫
- **/
 package edu.jiangxin.searchengine.search;
 
 import java.io.BufferedReader;
@@ -20,23 +16,43 @@ import org.wltea.analyzer.core.IKSegmenter;
 import org.wltea.analyzer.core.Lexeme;
 
 /**
- *
+ * 搜索引擎，读取索引文件按照索引上词频来排序显示结果.
  * @author jiangxin
  *
  */
 public class MyEngine {
-	String indexFile; // the index file
-	Vector<String> vecKey = new Vector<String>();
-	HashMap<String, String> hashWord = null;
-	final int isOr = 0;
-	final int isAnd = 1;
-	long time = 0;
-	int symbol = 0;
+	/**  */
+	private String indexFile; // the index file
 
+	/**  */
+	private Vector<String> vecKey = new Vector<String>();
+
+	/**  */
+	private HashMap<String, String> hashWord = null;
+
+	/**  */
+	private final int isOr = 0;
+
+	/**  */
+	private final int isAnd = 1;
+
+	/**  */
+	private long time = 0;
+
+	/**  */
+	private int symbol = 0;
+
+	/**
+	 *
+	 */
 	public MyEngine() {
 	}
 
-	public MyEngine(String indexFile) {
+	/**
+	 *
+	 * @param indexFile String
+	 */
+	public MyEngine(final String indexFile) {
 		this.indexFile = indexFile; // 索引文件
 		long begin = System.currentTimeMillis();
 		hashWord = new HashMap<String, String>();
@@ -60,8 +76,12 @@ public class MyEngine {
 		this.time = end - begin;
 	}
 
-	// 获得结果集合
-	public ArrayList<ResultModel> getResultSet(String key) {
+	/**
+	 * 获得结果集合.
+	 * @param key key
+	 * @return ArrayList<ResultModel>
+	 */
+	public final ArrayList<ResultModel> getResultSet(final String key) {
 		int pos = key.indexOf("&");
 		if (pos > 0) {
 			symbol = 1;
@@ -218,13 +238,19 @@ public class MyEngine {
 		return modList;
 	}
 
-	// 获得处理时间
-	public long getTime() {
+	/**
+	 * 获得处理时间.
+	 * @return long
+	 */
+	public final long getTime() {
 		return this.time;
 	}
 
-	// 合并相同出处内容的词频
-	private void resultMerger(ArrayList<ResultModel> modList) {
+	/**
+	 * 合并相同出处内容的词频.
+	 * @param modList modList
+	 */
+	private void resultMerger(final ArrayList<ResultModel> modList) {
 		for (int i = 0; i < modList.size(); i++) {
 			for (int j = i + 1; j < modList.size(); j++) {
 				if (modList.get(i) != null && modList.get(j) != null) {
@@ -237,7 +263,11 @@ public class MyEngine {
 		}
 	}
 
-	// 对关键词高亮显示
+	/**
+	 * 对关键词高亮显示.
+	 * @param content content
+	 * @return String
+	 */
 	public final String highLightKey(String content) {
 		content = content.replaceAll(" ", "");
 		for (String word : this.vecKey) {
