@@ -32,7 +32,7 @@ public class CreateIndex {
 	 * @throws IOException IOException
 	 */
 	public CreateIndex() throws IOException {
-		HashMap<String, String> hashResult = new HashMap<String, String>();
+		HashMap<String, String> hashResult = new HashMap<>();
 		File dirFile = new File("target/wordDoc");
 		File[] fileList = dirFile.listFiles();
 
@@ -42,7 +42,7 @@ public class CreateIndex {
 			for (int i = 0; i < fileList.length; i++) {
 				String fileName = fileList[i].getName();
 				System.out.println("\t现在正在对文件" + fileName + "进行分析");
-				HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
+				HashMap<String, Integer> hashMap = new HashMap<>();
 				String content = FileUtils.readFileToString(new File("target/wordDoc/" + fileName), "UTF-8");
 				String[] wordArray = content.split(" ");
 				for (int j = 0; j < wordArray.length; j++) {

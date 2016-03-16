@@ -70,7 +70,7 @@ public class Crawler implements Runnable {
 	 */
 	private static Set<String> extracLinks(final String url, final LinkFilter filter) {
 
-		Set<String> links = new HashSet<String>();
+		Set<String> links = new HashSet<>();
 		try {
 			Parser parser = new Parser(url);
 			// parser.setEncoding("utf8");
