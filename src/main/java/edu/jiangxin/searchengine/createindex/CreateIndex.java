@@ -22,8 +22,15 @@ import edu.jiangxin.searchengine.constant.Constant;
  *
  */
 public class CreateIndex {
-	long start, end;
+	/**
+	 *
+	 */
+	private long start, end;
 
+	/**
+	 *
+	 * @throws IOException IOException
+	 */
 	public CreateIndex() throws IOException {
 		HashMap<String, String> hashResult = new HashMap<String, String>();
 		File dirFile = new File("target/wordDoc");

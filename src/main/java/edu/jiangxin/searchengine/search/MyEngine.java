@@ -17,8 +17,13 @@ import java.util.HashMap;
 import java.util.Vector;
 
 import org.wltea.analyzer.core.IKSegmenter;
-import org.wltea.analyzer.core.*;
+import org.wltea.analyzer.core.Lexeme;
 
+/**
+ *
+ * @author jiangxin
+ *
+ */
 public class MyEngine {
 	String indexFile; // the index file
 	Vector<String> vecKey = new Vector<String>();
@@ -84,7 +89,7 @@ public class MyEngine {
 						modListBefore.add(modArray[i]);
 					}
 					// 将结果按照词频排序
-					Collections.sort(modList, new SortByWordNum());
+					Collections.sort(modList);
 				}
 				array = resultAfter.split("#next#"); // 得到存在该关键字的所有文本文件信息
 				modArray = new ResultModel[array.length]; // 每个文本文件信息都可以获得一个ResultModel
@@ -97,7 +102,7 @@ public class MyEngine {
 						modListAfter.add(modArray[i]);
 					}
 					// 将结果按照词频排序
-					Collections.sort(modList, new SortByWordNum());
+					Collections.sort(modList);
 				}
 				for (int i = 0; i < modListAfter.size(); i++) {
 					for (int j = 0; j < modListBefore.size(); j++) {
@@ -138,7 +143,7 @@ public class MyEngine {
 						modListBefore.add(modArray[i]);
 					}
 					// 将结果按照词频排序
-					Collections.sort(modList, new SortByWordNum());
+					Collections.sort(modList);
 				}
 				array = resultAfter.split("#next#"); // 得到存在该关键字的所有文本文件信息
 				modArray = new ResultModel[array.length]; // 每个文本文件信息都可以获得一个ResultModel
@@ -151,7 +156,7 @@ public class MyEngine {
 						modListAfter.add(modArray[i]);
 					}
 					// 将结果按照词频排序
-					Collections.sort(modList, new SortByWordNum());
+					Collections.sort(modList);
 				}
 				for (int i = 0; i < modListAfter.size(); i++) {
 					for (int j = 0; j < modListBefore.size(); j++) {
@@ -204,7 +209,7 @@ public class MyEngine {
 					// 合并相同出处内容的词频
 					this.resultMerger(modList);
 					// 将结果按照词频排序
-					Collections.sort(modList, new SortByWordNum());
+					Collections.sort(modList);
 				}
 			}
 			long end = System.currentTimeMillis();

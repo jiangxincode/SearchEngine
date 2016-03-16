@@ -13,27 +13,41 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author jiangxin
  *
  */
-public class LinkQueue {
+public final class LinkQueue {
 
 	/** a lock against competition error. */
 	private static Lock lock = new ReentrantLock();
 
-
+	/**  */
 	private static Condition isEmpty = lock.newCondition();
 
-	// 已访问的 url 集合，之所以设为Set，是要保证其所包含的元素不重复
+	/** 已访问的 url 集合，之所以设为Set，是要保证其所包含的元素不重复. */
 	private static Set<String> visitedUrl = new HashSet<String>();
-	// 待访问的 url 集合
+
+	/** 待访问的 url 集合. */
 	private static Queue<String> unVisitedUrl = new PriorityQueue<String>();
 
-	// 添加到访问过的URL队列中
-	public static synchronized void addVisitedUrl(String url) {
+	/**
+	 *
+	 */
+	private LinkQueue() {
+
+	}
+
+	/**
+	 * 添加到访问过的URL队列中.
+	 * @param url url
+	 */
+	public static synchronized void addVisitedUrl(final String url) {
 		visitedUrl.add(url);
 		System.out.println("现在visitedUrl集合中共有：" + LinkQueue.getVisitedUrlNum() + "个元素");
 	}
 
-	// 移除访问过的URL
-	public static synchronized void removeVisitedUrl(String url) {
+	/**
+	 * 移除访问过的URL.
+	 * @param url url
+	 */
+	public static synchronized void removeVisitedUrl(final String url) {
 		visitedUrl.remove(url);
 	}
 
@@ -45,12 +59,18 @@ public class LinkQueue {
 		return visitedUrl.size();
 	}
 
-	// 获得URL队列
+	/**
+	 * 获得URL队列.
+	 * @return Queue<String>
+	 */
 	public static synchronized Queue<String> getUnVisitedUrl() {
 		return unVisitedUrl;
 	}
 
-	// 未访问的URL出队列
+	/**
+	 * 未访问的URL出队列.
+	 * @return Object
+	 */
 	public static Object unVisitedUrlDeQueue() {
 		lock.lock();
 		String visitUrl = null;
@@ -73,8 +93,11 @@ public class LinkQueue {
 		return visitUrl;
 	}
 
-	// 保证每个 url 只被访问一次
-	public static void addUnvisitedUrl(String url) {
+	/**
+	 * 保证每个 url 只被访问一次.
+	 * @param url url
+	 */
+	public static void addUnvisitedUrl(final String url) {
 		lock.lock();
 		try {
 			if (url != null && !url.trim().equals("") && !visitedUrl.contains(url) && !unVisitedUrl.contains(url)) {
@@ -91,11 +114,18 @@ public class LinkQueue {
 
 	}
 
+	/**
+	 *
+	 * @return int
+	 */
 	public static synchronized int getUnVisitedUrlNum() {
 		return unVisitedUrl.size();
 	}
 
-	// 判断未访问的URL队列中是否为空
+	/**
+	 * 判断未访问的URL队列中是否为空.
+	 * @return boolean
+	 */
 	public static synchronized boolean unVisitedUrlsEmpty() {
 		return unVisitedUrl.isEmpty();
 	}
