@@ -44,17 +44,15 @@ public class DownLoadFile {
 	 * @param filePath filePath
 	 */
 	private void saveToLocal(final InputStream data, final String filePath) {
-		try {
-			File result = new File(filePath);
-			result.getParentFile().mkdirs();
-			BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(result));
-			BufferedInputStream in = new BufferedInputStream(data);
+		File result = new File(filePath);
+		result.getParentFile().mkdirs();
+		
+		try (BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(result));
+			 BufferedInputStream in = new BufferedInputStream(data)) {
 			int r;
 			while ((r = in.read()) != -1) {
 				out.write((byte) r);
 			}
-			in.close();
-			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
