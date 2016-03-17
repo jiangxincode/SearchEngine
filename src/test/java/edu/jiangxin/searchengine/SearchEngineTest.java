@@ -48,7 +48,7 @@ public class SearchEngineTest {
 			}
 		}
 
-		long start = 0, end = 0;
+		long start, end;
 		start = System.currentTimeMillis();
 		ExecutorService executors = Executors.newFixedThreadPool(Constant.DEFAULT_NUM_OF_THREAD);
 		for (int i = 0; i < Constant.DEFAULT_NUM_OF_THREAD; i++) {
