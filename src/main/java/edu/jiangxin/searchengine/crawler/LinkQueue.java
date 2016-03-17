@@ -22,10 +22,10 @@ public final class LinkQueue {
 	private static Condition isEmpty = lock.newCondition();
 
 	/** 已访问的 url 集合，之所以设为Set，是要保证其所包含的元素不重复. */
-	private static Set<String> visitedUrl = new HashSet<String>();
+	private static Set<String> visitedUrl = new HashSet<>();
 
 	/** 待访问的 url 集合. */
-	private static Queue<String> unVisitedUrl = new PriorityQueue<String>();
+	private static Queue<String> unVisitedUrl = new PriorityQueue<>();
 
 	/**
 	 *

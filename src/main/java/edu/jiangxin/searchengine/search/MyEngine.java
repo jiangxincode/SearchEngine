@@ -25,7 +25,7 @@ public class MyEngine {
 	private String indexFile; // the index file
 
 	/**  */
-	private Vector<String> vecKey = new Vector<String>();
+	private Vector<String> vecKey = new Vector<>();
 
 	/**  */
 	private HashMap<String, String> hashWord = null;
@@ -55,7 +55,7 @@ public class MyEngine {
 	public MyEngine(final String indexFile) {
 		this.indexFile = indexFile; // 索引文件
 		long begin = System.currentTimeMillis();
-		hashWord = new HashMap<String, String>();
+		hashWord = new HashMap<>();
 		try {
 			String line = null;
 			File file = new File(indexFile);
@@ -90,9 +90,9 @@ public class MyEngine {
 			vecKey.add(keyBefore);
 			vecKey.add(keyAfter);
 			System.out.println("keyBefore is:" + keyBefore + "keyAfter is:" + keyAfter);
-			ArrayList<ResultModel> modList = new ArrayList<ResultModel>();
-			ArrayList<ResultModel> modListBefore = new ArrayList<ResultModel>();
-			ArrayList<ResultModel> modListAfter = new ArrayList<ResultModel>();
+			ArrayList<ResultModel> modList = new ArrayList<>();
+			ArrayList<ResultModel> modListBefore = new ArrayList<>();
+			ArrayList<ResultModel> modListAfter = new ArrayList<>();
 			if (this.hashWord.size() > 0) {
 				long begin = System.currentTimeMillis();
 				ResultModel[] modArray = null;
@@ -144,9 +144,9 @@ public class MyEngine {
 			vecKey.add(keyBefore);
 			vecKey.add(keyAfter);
 			System.out.println("keyBefore is:" + keyBefore + "keyAfter is:" + keyAfter);
-			ArrayList<ResultModel> modList = new ArrayList<ResultModel>();
-			ArrayList<ResultModel> modListBefore = new ArrayList<ResultModel>();
-			ArrayList<ResultModel> modListAfter = new ArrayList<ResultModel>();
+			ArrayList<ResultModel> modList = new ArrayList<>();
+			ArrayList<ResultModel> modListBefore = new ArrayList<>();
+			ArrayList<ResultModel> modListAfter = new ArrayList<>();
 			if (this.hashWord.size() > 0) {
 				long begin = System.currentTimeMillis();
 				ResultModel[] modArray = null;
@@ -194,7 +194,7 @@ public class MyEngine {
 			return modList;
 		}
 
-		ArrayList<ResultModel> modList = new ArrayList<ResultModel>();
+		ArrayList<ResultModel> modList = new ArrayList<>();
 		if (this.hashWord.size() > 0) {
 			long begin = System.currentTimeMillis();
 			ResultModel[] modArray = null;
