@@ -123,9 +123,7 @@ public class CreateIndex {
 	 */
 	private void writeFileByChars(final String fileName, final String value) {
 		String path = fileName;
-		try {
-			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, false), "UTF-8"));
-
+		try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, false), "UTF-8"))) {
 			String[] arryStr = value.split("#LINE#");
 			for (int i = 0; i < arryStr.length; i++) {
 				bw.write(arryStr[i]);
@@ -133,7 +131,6 @@ public class CreateIndex {
 				bw.write('\n');
 			}
 
-			bw.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
