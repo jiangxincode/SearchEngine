@@ -56,9 +56,9 @@ public class SearchEngineTest {
 		}
 		executors.shutdown();
 
-		while (!executors.isTerminated()) {
+/*		while (!executors.isTerminated()) {
 			continue;
-		}
+		}*/
 
 		end = System.currentTimeMillis();
 		System.out.println("爬虫程序共花费时间：" + (end - start));
