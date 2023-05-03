@@ -1,6 +1,6 @@
 # SearchEngine
 
-[![Build status](https://ci.appveyor.com/api/projects/status/m5r92mlo6874n877/branch/master?svg=true)](https://ci.appveyor.com/project/jiangxincode/searchengine/branch/master)
+[![Build and Release](https://github.com/jiangxincode/SearchEngine/actions/workflows/BuildAndRelease.yml/badge.svg)](https://github.com/jiangxincode/SearchEngine/actions/workflows/BuildAndRelease.yml)
 [![Coverage Status](https://coveralls.io/repos/github/jiangxincode/SearchEngine/badge.svg?branch=master)](https://coveralls.io/github/jiangxincode/SearchEngine?branch=master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/dd73a81bdad0a3feea09/maintainability)](https://codeclimate.com/github/jiangxincode/SearchEngine/maintainability)
 
