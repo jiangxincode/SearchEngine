@@ -2,7 +2,6 @@
 
 [![Build and Release](https://github.com/jiangxincode/SearchEngine/actions/workflows/BuildAndRelease.yml/badge.svg)](https://github.com/jiangxincode/SearchEngine/actions/workflows/BuildAndRelease.yml)
 [![Coverage Status](https://coveralls.io/repos/github/jiangxincode/SearchEngine/badge.svg?branch=master)](https://coveralls.io/github/jiangxincode/SearchEngine?branch=master)
-[![Maintainability](https://api.codeclimate.com/v1/badges/dd73a81bdad0a3feea09/maintainability)](https://codeclimate.com/github/jiangxincode/SearchEngine/maintainability)
 
 ## Authors
 
