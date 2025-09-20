@@ -1,7 +1,6 @@
 # SearchEngine
 
 [![Build and Release](https://github.com/jiangxincode/SearchEngine/actions/workflows/BuildAndRelease.yml/badge.svg)](https://github.com/jiangxincode/SearchEngine/actions/workflows/BuildAndRelease.yml)
-[![Coverage Status](https://coveralls.io/repos/github/jiangxincode/SearchEngine/badge.svg?branch=master)](https://coveralls.io/github/jiangxincode/SearchEngine?branch=master)
 
 ## Authors
 
